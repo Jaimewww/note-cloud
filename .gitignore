@@ -1,0 +1,56 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.tmp
+
+# Maven
+target/
+logs/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.netbeans/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# VSCode
+.vscode/
+
+# Docker
+*.pid
+*.tar
+*.log
+docker-compose.override.yml
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Liberty (servidor)
+wlp/usr/servers/*/logs/
+wlp/usr/servers/*/workarea/
+wlp/usr/servers/*/dropins/*.war
+wlp/usr/servers/*/apps/*.war
