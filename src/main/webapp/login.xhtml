@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://java.sun.com/jsf/html" xmlns:p="http://java.sun.com/jsf/facelets"
+      lang="es">
+<h:head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+   <title> NoteCloud </title>
+
+   <!-- Iconos -->
+   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+   <link rel="stylesheet" href="style.css" />
+</h:head>
+<h:body>
+   <div class="container" id="container">
+
+      <!-- Registro -->
+      <div class="form-container register-container">
+         <h:form>
+            <h1>Registrarse</h1>
+            <h:inputText value="#{loginBean.nombre}" pt:placeholder="Nombre" />
+            <h:inputText value="#{loginBean.email}" placeholder="Email" />
+            <h:inputSecret value="#{loginBean.password}" placeholder="Contraseña" />
+            <h:commandButton value="Registrarse" action="#{loginBean.registrarse}" />
+            <span>o utilice su cuenta</span>
+            <div class="social-container">
+               <a href="#" class="social"><i class="lni lni-facebook-fill"/></a>
+               <a href="#" class="social"><i class="lni lni-google"/></a>
+               <a href="#" class="social"><i class="lni lni-linkedin-original"/></a>
+            </div>
+         </h:form>
+      </div>
+
+      <!-- Login -->
+      <div class="form-container login-container">
+         <h:form>
+            <h1> Iniciar sesión </h1>
+            <h:inputText value="#{loginBean.email}" pt:placeholder="Email" />
+            <h:inputSecret value="#{loginBean.password}" placeholder="Contraseña" />
+            <div class="content">
+               <div class="checkbox">
+                  <h:selectBooleanCheckbox value="#{loginBean.recordarme}" id="checkbox" />
+                  <label for="checkbox"> Recordarme </label>
+               </div>
+               <div class="pass-link">
+                  <a href="#">¿Ha olvidado su contraseña?</a>
+               </div>
+            </div>
+            <h:commandButton value="Iniciar" action="#{loginBean.login}" />
+            <span> o utilice su cuenta: </span>
+            <div class="social-container">
+               <a href="#" class="social"><i class="lni lni-facebook-fill"/></a>
+               <a href="#" class="social"><i class="lni lni-google"/></a>
+               <a href="#" class="social"><i class="lni lni-linkedin-original"/></a>
+            </div>
+         </h:form>
+      </div>
+
+      <!-- Panel overlay -->
+      <div class="overlay-container">
+         <div class="overlay">
+            <div class="overlay-panel overlay-left">
+               <h1 class="title"> Hola <br /> Clouders </h1>
+               <p>Si tienes una cuenta, inicia sesión aquí </p>
+               <button class="ghost" id="login"> Iniciar sesión
+                  <i class="lni lni-arrow-left"/>
+               </button>
+            </div>
+            <div class="overlay-panel overlay-right">
+               <h1 class="title"> Organiza <br /> ahora tus apuntes </h1>
+               <p>Si aún no tienes una cuenta, únete a nosotros </p>
+               <button class="ghost" id="register">Registrarse
+                  <i class="lni lni-arrow-right"/>
+               </button>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+   <!-- SCRIPT PARA EL EFECTO SLIDER -->
+   <script>
+      const container = document.getElementById('container');
+      const loginButton = document.getElementById('login');
+      const registerButton = document.getElementById('register');
+
+      loginButton.addEventListener('click', () => {
+         container.classList.remove("right-panel-active");
+      });
+
+      registerButton.addEventListener('click', () => {
+         container.classList.add("right-panel-active");
+      });
+   </script>
+</h:body>
+</html>
