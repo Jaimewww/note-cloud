@@ -6,6 +6,10 @@
 *.log
 *.tmp
 
+#ENVIROMENT
+.env
+docker-env
+
 # Maven
 target/
 logs/
