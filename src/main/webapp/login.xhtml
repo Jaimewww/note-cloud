@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:p="primefaces"
       lang="es">
 
 <h:head>
@@ -22,16 +22,19 @@
 </h:head>
 
 <h:body>
-   <div class="container" id="container">
+   <p:growl id="growl" showSummary="true" globalOnly="false" showDetail="false" life="5000"/>
 
+   <div class="container" id="container">
       <!-- Registro -->
       <div class="form-container register-container">
-         <h:form>
+         <h:form prependId="false">
             <h1>Registrarse</h1>
-            <h:inputText value="#{loginBean.nombre}" styleClass="input" pt:placeholder="Nombre" />
-            <h:inputText value="#{loginBean.email}" styleClass="input" pt:placeholder="Email" />
-            <h:inputSecret value="#{loginBean.password}" styleClass="input" pt:placeholder="Contraseña" />
-            <h:commandButton value="Registrarse" action="#{loginBean.registrarse}" styleClass="btn btn-oval" />
+            <h:inputText value="#{registerBean.userDTO.name}" styleClass="input" pt:placeholder="Nombre"/>
+            <h:inputText value="#{registerBean.userDTO.email}" styleClass="input" pt:placeholder="Correo"/>
+            <h:inputSecret value="#{registerBean.userDTO.password}" styleClass="input" pt:placeholder="Contraseña"/>
+            <h:inputSecret value="#{registerBean.userDTO.confirmPassword}" styleClass="input" pt:placeholder="Confirmar contraseña" />
+            <h:commandButton value="Registrarse" action="#{registerBean.register()}" styleClass="btn btn-oval" update="growl"
+                              process="@form" disableOnAjax="true"/>
             <span>o utilice su cuenta</span>
             <div class="social-container">
                <a href="#" id="googleSignInRegister" class="social" title="Iniciar sesión con Google" aria-label="Iniciar sesión con Google">
@@ -48,20 +51,20 @@
 
       <!-- Login -->
       <div class="form-container login-container">
-         <h:form>
+         <h:form prependId="false">
             <h1>Iniciar sesión</h1>
-            <h:inputText value="#{loginBean.email}" styleClass="input" pt:placeholder="Email" />
-            <h:inputSecret value="#{loginBean.password}" styleClass="input" pt:placeholder="Contraseña" />
+            <h:inputText value="#{loginBean.userDTO.email}" styleClass="input" pt:placeholder="Email" />
+            <h:inputSecret value="#{loginBean.userDTO.password}" styleClass="input" pt:placeholder="Contraseña"/>
             <div class="content">
                <div class="checkbox">
-                  <h:selectBooleanCheckbox value="#{loginBean.recordarme}" id="checkbox" />
+                  <h:selectBooleanCheckbox value="true" id="checkbox" />
                   <label for="checkbox">Recordarme</label>
                </div>
                <div class="pass-link">
                   <a href="#">¿Ha olvidado su contraseña?</a>
                </div>
             </div>
-            <h:commandButton value="Iniciar" action="#{loginBean.login}" styleClass="btn btn-oval" />
+            <h:commandButton value="Iniciar" action="#{loginBean.login}" styleClass="btn btn-oval" update="growl" />
             <span>o utilice su cuenta:</span>
             <div class="social-container">
                <a href="#" id="googleSignInLogin" class="social" title="Iniciar sesión con Google" aria-label="Iniciar sesión con Google">

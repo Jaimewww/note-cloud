@@ -1,4 +1,4 @@
-package edu.cc.notecloud.persistance.util;
+package edu.cc.notecloud.config;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

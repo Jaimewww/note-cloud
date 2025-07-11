@@ -10,7 +10,7 @@
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/notecloud?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password">123456</property>
 
         <!-- Dialecto SQL para la base de datos -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
@@ -25,8 +25,8 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Declarar tus clases anotadas -->
-        <mapping class="edu.cc.notecloud.persistance.User"/>
-        <!-- Agrega más mappings aquí si tienes otras entidades -->
+        <mapping class="edu.cc.notecloud.entity.User"/>
+        <mapping class="edu.cc.notecloud.entity.Role"/>
 
     </session-factory>
 </hibernate-configuration>
