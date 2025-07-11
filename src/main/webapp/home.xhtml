@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      lang="es">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NoteCloud</title>
+    <link rel="icon" href="images/note.png" type="image/png" />
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styleHome.css" />
+</h:head>
+
+<h:body>
+
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <img src="images/note.png" alt="Logo NoteCloud" class="logo" />
+                <span class="brand-name">NoteCloud</span>
+            </div>
+
+            <!-- Formulario con botón JSF para redirigir -->
+            <h:form>
+                <h:commandButton value="Empezar" action="login.xhtml?faces-redirect=true" styleClass="get-started-btn top-right-btn" />
+            </h:form>
+        </div>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Aquí va el resto de tu contenido: hero-section, cards, quote, footer, etc -->
+        </main>
+
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>Donde te ayudamos a <span class="highlight">organizar tú vida </span></h1>
+            <p>Explora tu personalidad y lleva tus habilidades al siguiente nivel.</p>
+
+            <div class="hero-stats">
+                <div>
+                    <span class="stat-value">NoteCloud</span>
+                    <span class="stat-label">tú mejor opción</span>
+                </div>
+
+            </div>
+        </div>
+        <img src="images/portada.jpeg" class="hero-image" />
+    </header>
+
+    <section class="cards-section">
+        <h2> Nuestra misión es planificar tu vida y hacerla <span class="highlight">más creativa</span> </h2>
+        <div class="cards-container">
+            <div class="info-card">
+                <img src="images/card1.gif" alt="Misión" class="card-img full-image" />
+            </div>
+            <div class="info-card">
+                <img src="images/car2.gif" alt="Experiencia" class="card-img full-image" />
+            </div>
+            <div class="info-card">
+                <img src="images/card3.gif" alt="Enfoque" class="card-img full-image" />
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="quote-section">
+        <div class="quote-content">
+            <img src="images/avatar.png" alt="Avatar" class="quote-avatar" />
+            <blockquote>
+
+                "Organización dedicada a convertir nuestras ideas en mejoras para tu vida."
+            </blockquote>
+            <span class="quote-author">ZoCaJaWi, CEO de NoteCloud</span>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-contact">
+                <ul>
+                    <li><i class="lni lni-whatsapp"></i> +593 95 994 8917</li>
+                    <li><i class="lni lni-envelope"></i> noteCloud@gmail.com</li>
+                    <li><i class="lni lni-instagram-original"></i> @noteCloud_</li>
+                </ul>
+            </div>
+            <div class="footer-team">
+                <h4>Grupo Corporativo:</h4>
+                <p>Soledad Buri, Jaime Lanzáduri, Wilson Palma, Cael Soto</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© NoteCloud.com - 2025</span>
+        </div>
+    </footer>
+</h:body>
+</html>

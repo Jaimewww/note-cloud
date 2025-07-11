@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+    --primary: #3b7382;
+    --accent: #f9c86a;
+    --bg: #fdfdfd;
+    --card: #fff8e6;
+    --text: #222;
+    --highlight: #f9c86a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    font-family: 'Poppins', Arial, sans-serif;
+    color: var(--text);
+}
+
+.hero-section {
+    background: #4e7cb2; /* azul pastel sólido */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px 10vw 32px 10vw;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 540px;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.hero-content .highlight {
+    color: var(--accent);
+    background: rgba(249,200,106,0.15);
+    border-radius: 10px;
+    padding: 0 8px;
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 28px;
+}
+
+.get-started-btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 36px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 24px;
+    transition: background 0.2s;
+}
+
+.get-started-btn:hover {
+    background: #ffffff;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 18px;
+}
+
+.stat-value {
+    font-size: 1.5em;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.stat-label {
+    display: block;
+    font-size: 1em;
+    color: #ffffff;
+}
+
+.hero-image {
+    width: 370px;
+    height: 320px;
+    object-fit: contain;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 10px 32px rgba(59,115,130,0.08);
+    margin-left: 40px;
+}
+
+.cards-section {
+    background: #d9e3f6;
+    padding: 48px 10vw 24px 10vw;
+    text-align: center;
+}
+
+.cards-section h2 {
+    font-size: 2em;
+    color: var(--primary);
+    margin-bottom: 36px;
+}
+
+.cards-section .highlight {
+    color: var(--primary);
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 0 8px;
+}
+.cards-container {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    width: 300px;
+    height: 300px; /* altura fija para que todas las cards tengan igual tamaño */
+    border-radius: 24px;
+    overflow: hidden; /* para que la imagen no se salga de los bordes redondeados */
+    box-shadow: 0 2px 16px rgba(59,115,130,0.07);
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.info-card:hover {
+    box-shadow: 0 8px 32px rgba(59,115,130,0.15);
+}
+
+
+.card-img.full-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* para que el gif cubra toda la tarjeta */
+    display: block;
+}
+
+.quote-section {
+    background: #9ebaf1;
+    padding: 48px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.quote-content {
+    background: #cbd1ed;
+    border-radius: 24px;
+    padding: 32px 48px;
+    box-shadow: 0 2px 16px rgba(59,115,130,0.07);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.quote-avatar {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(59,115,130,0.05);
+}
+
+blockquote {
+    font-size: 1.2em;
+    color: var(--primary);
+    font-style: italic;
+    margin: 0;
+}
+
+.quote-author {
+    font-size: 1em;
+    color: var(--text);
+    margin-left: 16px;
+    font-weight: 700;
+}
+
+.main-footer {
+    background: var(--primary);
+    color: #fff;
+    padding: 32px 10vw 12px 10vw;
+    border-radius: 32px 32px 0 0;
+    margin-top: 48px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-contact ul li {
+    font-size: 1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-contact ul li i {
+    font-size: 1.3em;
+    color: var(--accent);
+}
+
+.footer-team h4 {
+    margin: 0 0 8px 0;
+    font-size: 1.1em;
+    color: var(--accent);
+}
+
+.footer-bottom {
+    border-top: 1px solid #ffffff44;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 0.95em;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .hero-section, .cards-section, .main-footer {
+        padding: 32px 4vw;
+    }
+    .cards-container {
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+    }
+    .footer-content {
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+    }
+    .quote-content {
+        flex-direction: column;
+        gap: 18px;
+        padding: 24px;
+        align-items: flex-start;
+    }
+    .hero-image {
+        display: none;
+    }
+}
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 80px;
+    background: #fbfbfb; /* Celeste */
+    box-shadow: 0 2px 12px rgba(0,0,0,0.13); /* Sombra gris suave */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    z-index: 2000;
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 99px;
+    height: 99px;
+    object-fit: contain;
+}
+
+.brand-name {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #064a85;
+    letter-spacing: 1px;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+/* Ajusta el botón para que quede bien en la barra */
+.get-started-btn.top-right-btn {
+
+    position: static;
+    margin-left: auto;
+    background: #0059b3;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 2100;
+}
+
+.get-started-btn.top-right-btn:hover {
+    background: #3399ff;
+}
+
+/* Para que el contenido de la página no quede debajo de la barra */
+.main-content {
+    padding-top: 80px; /* igual o mayor que la altura de .top-bar */
+}
+
