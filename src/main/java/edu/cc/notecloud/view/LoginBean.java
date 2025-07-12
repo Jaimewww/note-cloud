@@ -26,6 +26,7 @@ public class LoginBean implements Serializable {
             char[] password = userDTO.getPassword().toCharArray();
             User user = SecurityFacade.authenticate(userDTO.getEmail(), password);
             if(user != null){
+                //Esta linea almacena el usuario en la sesión
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
                 return "home.xhtml?faces-redirect=true";
             } else {

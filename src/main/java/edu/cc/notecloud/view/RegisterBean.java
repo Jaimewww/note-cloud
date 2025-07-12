@@ -20,13 +20,18 @@ public class RegisterBean implements Serializable {
     public UserDTO getUserDTO() { return userDTO; }
 
     public String register() {
+        if(SecurityFacade.findUserByEmail(userDTO.getEmail()) != null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "ERROR: El correo ya está registrado", ""));
+            return null;
+        }
         if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Error", "Las contraseñas no coinciden"));
+                            "ERROR: Las contraseñas no coinciden", ""));
             return null;
         }
-
         char[] raw = userDTO.getPassword().toCharArray();
         try {
             /* delega todo al facade */
@@ -34,8 +39,10 @@ public class RegisterBean implements Serializable {
                     userDTO.getName(),
                     userDTO.getEmail(),
                     raw);
-
-            return "home.xhtml?faces-redirect=true";
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            "Usuario registrado correctamente", ""));
+            return null;
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,

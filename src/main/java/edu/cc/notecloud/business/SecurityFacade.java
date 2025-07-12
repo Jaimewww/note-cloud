@@ -56,4 +56,16 @@ public class SecurityFacade {
             }
         }
     }
+
+    public static User findUserByEmail(String email) {
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "FROM User WHERE email = :email", User.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+        } catch (NonUniqueResultException e) {
+            throw new IllegalStateException(
+                    "Email duplicado en la base de datos: " + email, e);
+        }
+    }
 }
