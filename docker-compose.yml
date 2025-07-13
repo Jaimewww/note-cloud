@@ -8,13 +8,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: notecloud
-      MYSQL_USER: notecloudUser
-      MYSQL_PASSWORD: admin@987
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PWD}
     ports:
       - ${DB_MYSQL_PORT_PUBLIC}:3306
     volumes:
       - notecloud-mysql-data:/var/lib/mysql
-      #- ./init_db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       notecloud-network:
         ipv4_address: 173.21.0.250
@@ -22,9 +21,10 @@ services:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$${MYSQL_USER}", "-p$${MYSQL_PASSWORD}"]
       interval: 10s
       timeout: 5s
-      retries: 5  # Número de intentos antes de marcar como no saludable
-      start_period: 30s #Espera inicial antes de comenzar a comprobar(Dar tiempo a MySQL inicie)
+      retries: 5
+      start_period: 30s
 
+  # Adminer
   mysql-adminer-bd:
     image: adminer
     container_name: mysql-adminer-bd-container
@@ -37,12 +37,32 @@ services:
       notecloud-network:
         ipv4_address: 173.21.0.253
 
+  notecloud-app:
+    build: .
+    container_name: notecloud-app-container
+    restart: unless-stopped
+    depends_on:
+      - notecloud-mysql-db
+    environment:
+      DB_HOST: notecloud-mysql-db
+      DB_PORT: 3306
+      DB_NAME: notecloud
+      DB_USER: notecloudUser
+      DB_PWD: admin@987
+    ports:
+      - 9081:9081   # HTTP
+      - 9444:9444   # HTTPS
+    volumes:
+      - .:/workspace
+    networks:
+      notecloud-network:
+        ipv4_address: 173.21.0.100
+    env_file:
+      - src/main/liberty/config/server.env
 
 networks:
   notecloud-network:
     driver: bridge
-    #driver_opts:
-    #    parent: eth0
     ipam:
       driver: default
       config:

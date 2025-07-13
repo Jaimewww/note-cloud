@@ -7,8 +7,8 @@
 *.tmp
 
 #ENVIROMENT
-.env
-docker-env
+src/main/liberty/config/server.env
+src/main/liberty/config/server.env
 
 # Maven
 target/
