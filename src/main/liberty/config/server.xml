@@ -6,6 +6,7 @@
         <user name="username" password="password" />
     </basicRegistry>
     <keyStore id="defaultKeyStore" password="password" />
+    <ssl id="defaultSSLConfig" keyStoreRef="defaultKeyStore" trustDefaultCerts="true"/>
     <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443" />
     <webApplication location="note-cloud.war" contextRoot="/"/>
 </server>
