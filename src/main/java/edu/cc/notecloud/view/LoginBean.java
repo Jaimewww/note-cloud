@@ -6,6 +6,7 @@ import edu.cc.notecloud.entity.User;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.validation.Valid;
 
@@ -14,6 +15,9 @@ import java.io.Serializable;
 @Named
 @SessionScoped
 public class LoginBean implements Serializable {
+    @Inject
+    UserBean userBean;
+
     @Valid
     private UserDTO userDTO = new UserDTO();
 
@@ -28,7 +32,8 @@ public class LoginBean implements Serializable {
             if(user != null){
                 //Esta linea almacena el usuario en la sesión
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
-                return "home.xhtml?faces-redirect=true";
+                userBean.setLoggedUser(user);
+                return "profile.xhtml?faces-redirect=true";
             } else {
                 FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Credenciales inválidas"));

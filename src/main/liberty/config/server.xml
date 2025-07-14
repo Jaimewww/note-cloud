@@ -26,6 +26,10 @@
                 user="${env.DB_USER}"
                 password="${env.DB_PWD}"/>
     </dataSource>
-
+    <basicRegistry id="defaultBasicRegistry" realm="BasicRealm">
+        <user name="username" password="password" />
+    </basicRegistry>
+    <keyStore id="defaultKeyStore" password="password" />
+    <ssl id="defaultSSLConfig" keyStoreRef="defaultKeyStore" trustDefaultCerts="true"/>
     <webApplication location="note-cloud.war" contextRoot="/"/>
 </server>
