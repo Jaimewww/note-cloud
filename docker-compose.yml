@@ -37,29 +37,29 @@ services:
       notecloud-network:
         ipv4_address: 173.21.0.253
 
-  notecloud-app:
-    build: .
-    container_name: notecloud-app-container
-    restart: unless-stopped
-    depends_on:
-      - notecloud-mysql-db
-    environment:
-      DB_HOST: notecloud-mysql-db
-      DB_PORT: 3306
-      DB_NAME: notecloud
-      DB_USER: notecloudUser
-      DB_PWD: admin@987
-    ports:
-      - 9081:9081   # HTTP
-      - 9444:9444   # HTTPS
-    volumes:
-      - .:/workspace
-    networks:
-      notecloud-network:
-        ipv4_address: 173.21.0.100
-    env_file:
-      - src/main/liberty/config/server.env
-
+#  notecloud-app:
+#    build: .
+#    container_name: notecloud-app-container
+#    restart: unless-stopped
+#    depends_on:
+#      - notecloud-mysql-db
+#    environment:
+#      DB_HOST: notecloud-mysql-db
+#      DB_PORT: 3306
+#      DB_NAME: notecloud
+#      DB_USER: notecloudUser
+#      DB_PWD: admin@987
+#    ports:
+#      - 9081:9081   # HTTP
+#      - 9444:9444   # HTTPS
+#    volumes:
+#      - .:/workspace
+#    networks:
+#      notecloud-network:
+#        ipv4_address: 173.21.0.100
+#    env_file:
+#      - src/main/liberty/config/server.env
+#
 networks:
   notecloud-network:
     driver: bridge

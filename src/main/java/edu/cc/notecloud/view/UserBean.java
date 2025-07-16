@@ -1,41 +1,44 @@
 package edu.cc.notecloud.view;
 
+import edu.cc.notecloud.business.SecurityFacade;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import edu.cc.notecloud.entity.User;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.HttpURLConnection;
-import java.net.URL;
 @Named
 @SessionScoped
 public class UserBean implements Serializable {
     private User loggedUser;
     private String accessToken;
 
+    @Inject
+    SecurityFacade securityFacade;
+
     public String logout() {
-        String url = "https://oauth2.googleapis.com/revoke?token=" + accessToken;
-
         try {
-            // Realizar la solicitud de revocación
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-            int responseCode = connection.getResponseCode();
-
-            if (responseCode == 200) {
-                System.out.println("Token revocado exitosamente.");
-            } else {
-                System.out.println("Error al revocar el token.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            securityFacade.revokeGoogleToken(accessToken);
+        } catch (IOException ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new jakarta.faces.application.FacesMessage(
+                            jakarta.faces.application.FacesMessage.SEVERITY_ERROR,
+                            "Error al cerrar sesión",
+                            ex.getMessage()));
+            ex.printStackTrace();
+            return null;
         }
 
-        // Invalida la sesión en la aplicación
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        // Limpieza explícita (opcional pero recomendable)
+        this.loggedUser = null;
+        this.accessToken = null;
+
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .invalidateSession();
+
         return "login.xhtml?faces-redirect=true";
     }
 

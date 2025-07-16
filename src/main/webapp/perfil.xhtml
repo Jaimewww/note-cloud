@@ -10,8 +10,6 @@
         <h:outputText value="#{userBean.loggedUser.nombre}" />
         <h:outputText value="Email:" />
         <h:outputText value="#{userBean.loggedUser.email}" />
-        <h:outputText value="Foto:" />
-        <p:graphicImage value="#{userBean.loggedUser.imageUrl}" width="100" />
     </h:panelGrid>
     <h:form>
         <p:commandButton value="Cerrar sesión" action="#{userBean.logout}" />

@@ -10,27 +10,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(nullable = false, unique = true)
+    @Column(name="email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false,
-            columnDefinition = "VARBINARY(60)")
+    @Column(name = "password", columnDefinition = "VARBINARY(60)")
     private byte[] passwordHash;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
-    @Column(unique = true)
-    private String googleId;
-
-    @Column(unique = true)
-    private String imageUrl;
-
-    @Column(nullable = false)
+    @Column(name = "enabled",nullable = false)
     private boolean enabled;
 
     public Long getId() {
@@ -79,12 +72,4 @@ public class User {
     public Role getRole() { return role; }
 
     public void setRole(Role role) { this.role = role; }
-
-    public String getGoogleId() { return googleId; }
-
-    public void setGoogleId(String googleId) { this.googleId = googleId; }
-
-    public String getImageUrl() { return imageUrl; }
-
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }

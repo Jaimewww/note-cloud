@@ -1,35 +1,63 @@
-<server>
+<server description="defaultServer">
+
+    <!-- ─────── FEATURES ──────────────────────────────────────────────── -->
     <featureManager>
+        <!-- webProfile-10 ya incluye JPA, CDI, Faces, etc. -->
         <feature>webProfile-10.0</feature>
-        <feature>persistence-3.1</feature>
     </featureManager>
+
+    <!-- ─────── SEGURIDAD BÁSICA DEL ADMIN ───────────────────────────── -->
+    <basicRegistry id="defaultBasicRegistry" realm="BasicRealm">
+        <user name="username" password="password"/>
+    </basicRegistry>
+    <keyStore id="defaultKeyStore" password="password"/>
+
+    <!-- ─────── ENDPOINT HTTP(S) ─────────────────────────────────────── -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"  httpPort="9080"  httpsPort="9443"/>
+
+    <!-- ─────── REGISTRO / TRAZAS ────────────────────────────────────── -->
+    <logging consoleFormat="SIMPLE" consoleLogLevel="INFO"/>
+    <logging messageFormat="TBASIC"  messageLogLevel="INFO"/>
+    <!-- Seguimiento detallado de JPA (útil mientras depuras) -->
     <logging traceSpecification="JPA=all"/>
 
-    <!-- Puertos libres en local -->
-    <httpEndpoint id="defaultHttpEndpoint"
-                  host="*"
-                  httpPort="9081"
-                  httpsPort="9444"/>
+    <!-- ─────── VARIABLES ────────────────────────────────────────────── -->
+    <!-- Directorio *dentro* del servidor donde colocas el JAR del driver -->
+    <variable name="jdbcLibDir" value="${server.config.dir}/lib"/>
+    <!-- Datos de la BBDD Docker (puedes sobreescribir con server.env) -->
+    <variable name="db.host" value="localhost"/>
+    <variable name="db.port" value="3306"/>
+    <variable name="db.name" value="notecloud"/>
+    <variable name="db.user" value="notecloudUser"/>
+    <variable name="db.pass" value="admin@987"/>
 
-    <!-- Driver colocado en /config/lib/global -->
-    <library id="mysqlLib">
-        <fileset dir="${server.config.dir}/lib/global"
-                 includes="mysql-connector-j-*.jar"/>
-    </library>
+    <jpa defaultPersistenceProvider="org.eclipse.persistence.jpa.PersistenceProvider">
+        <defaultProperties>
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <property name="javax.persistence.lock.timeout" value="4000"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL9Dialect"/>
+        </defaultProperties>
+    </jpa>
 
+
+    <!-- ─────── DATASOURCE JTA ───────────────────────────────────────── -->
     <dataSource id="MySQLDS" jndiName="jdbc/MySQLDS">
-        <jdbcDriver libraryRef="mysqlLib"/>
-        <properties
-                databaseName="${env.DB_NAME"
-                serverName="${env.DB_HOST}"
-                portNumber="${env.DB_PORT}"
-                user="${env.DB_USER}"
-                password="${env.DB_PWD}"/>
+        <jdbcDriver id="mysql-driver" libraryRef="MySqlJDBCLib"/>
+        <properties serverName="${db.server.name}"
+                    portNumber="${db.port.number}"
+                    databaseName="notecloud"
+                    user="notecloudUser"
+                    password="admin@987"
+                    useSSL="false" serverTimezone="UTC"/>
+
     </dataSource>
-    <basicRegistry id="defaultBasicRegistry" realm="BasicRealm">
-        <user name="username" password="password" />
-    </basicRegistry>
-    <keyStore id="defaultKeyStore" password="password" />
-    <ssl id="defaultSSLConfig" keyStoreRef="defaultKeyStore" trustDefaultCerts="true"/>
+
+    <!-- ─────── APLICACIÓN WEB ───────────────────────────────────────── -->
     <webApplication location="note-cloud.war" contextRoot="/"/>
+
+    <!-- Referencia al driver JDBC de MySQL -->
+    <library id="MySqlJDBCLib">
+        <fileset dir="${jdbcLibDir}/global" includes="mysql-connector-j-*.jar"/>
+    </library>
 </server>

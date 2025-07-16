@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name="posts")
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name = "post_type", length = 20)
 public class Post {
@@ -12,20 +13,21 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name="title" ,nullable = false)
     private String title;
 
     @Lob
+    @Column(name = "content")
     private String content;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(nullable = false)
+    @Column(name = "created_at",nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
+    @Column(name="state" ,nullable = false)
     private boolean state;
 
     public Long getId() {

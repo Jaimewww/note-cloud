@@ -5,6 +5,7 @@ import edu.cc.notecloud.dto.UserDTO;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.validation.Valid;
 
@@ -17,10 +18,13 @@ public class RegisterBean implements Serializable {
     @Valid
     private UserDTO userDTO = new UserDTO();
 
+    @Inject
+    SecurityFacade securityFacade;
+
     public UserDTO getUserDTO() { return userDTO; }
 
     public String register() {
-        if(SecurityFacade.findUserByEmail(userDTO.getEmail()) != null) {
+        if(securityFacade.findUserByEmail(userDTO.getEmail()) != null) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "ERROR: El correo ya está registrado", ""));
@@ -35,7 +39,7 @@ public class RegisterBean implements Serializable {
         char[] raw = userDTO.getPassword().toCharArray();
         try {
             /* delega todo al facade */
-            SecurityFacade.createUser(
+            securityFacade.createUser(
                     userDTO.getName(),
                     userDTO.getEmail(),
                     raw);
@@ -48,6 +52,7 @@ public class RegisterBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Ocurrió un error al registrar el usuario"));
+            e.printStackTrace();
             return null;
         } finally {
             Arrays.fill(raw, '\0');
