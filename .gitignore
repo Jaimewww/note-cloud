@@ -6,6 +6,10 @@
 *.log
 *.tmp
 
+#ENVIROMENT
+src/main/liberty/config/server.env
+src/main/liberty/config/server.env
+
 # Maven
 target/
 logs/

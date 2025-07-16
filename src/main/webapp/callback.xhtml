@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<h:head><title>Mi Aplicación</title></h:head>
+<h:body>
+    <f:event type="preRenderView" listener="#{authBean.procesarCallback}"/>
+    <h1>Bienvenido a mi aplicación</h1>
+</h:body>
+</html>
