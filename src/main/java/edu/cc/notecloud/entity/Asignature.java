@@ -1,23 +1,22 @@
-
 package edu.cc.notecloud.entity;
-
 
 import jakarta.persistence.*;
 
 import java.util.List;
 
+// Asignature.java
 @Entity
-@Table(name="roles")
-public class Role {
+@Table(name = "asignatures")
+public class Asignature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
+    @OneToMany(mappedBy = "asignature")
+    private List<Note> notes;
 
     public Long getId() {
         return id;
@@ -34,4 +33,13 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
 }
+

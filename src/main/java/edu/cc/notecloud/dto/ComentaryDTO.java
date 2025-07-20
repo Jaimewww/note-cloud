@@ -4,19 +4,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class NoteDTO {
-    @NotBlank(message = "ERROR: El título es obligatorio")
+public class ComentaryDTO {
+    @NotBlank(message = "ERROR: El título del comentario es obligatorio")
     @Size(max = 100, message = "ERROR: El título no puede exceder los 100 caracteres")
     private String title;
 
-    @Size(max = 1000, message = "ERROR: La descripción no puede exceder los 1000 caracteres")
+    @NotBlank(message = "ERROR: El contenido del comentario no puede estar vacío")
+    @Size(max = 1000, message = "ERROR: El contenido no puede exceder los 1000 caracteres")
     private String content;
 
-    @NotBlank(message = "ERROR: Se requiere una ruta válida para el PDF")
-    private String pdfPath;
-
-    @NotNull(message = "ERROR: La asignatura es obligatoria")
-    private Long asignatureId;
+    @NotNull(message = "ERROR: El foro es obligatorio")
+    private Long forumId;
 
     @NotNull(message = "ERROR: El usuario es obligatorio")
     private Long userId;
@@ -37,20 +35,12 @@ public class NoteDTO {
         this.content = content;
     }
 
-    public String getPdfPath() {
-        return pdfPath;
+    public Long getForumId() {
+        return forumId;
     }
 
-    public void setPdfPath(String pdfPath) {
-        this.pdfPath = pdfPath;
-    }
-
-    public Long getAsignatureId() {
-        return asignatureId;
-    }
-
-    public void setAsignatureId(Long asignatureId) {
-        this.asignatureId = asignatureId;
+    public void setForumId(Long forumId) {
+        this.forumId = forumId;
     }
 
     public Long getUserId() {
