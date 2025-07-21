@@ -2,7 +2,7 @@ package edu.cc.notecloud.view;
 
 import edu.cc.notecloud.dto.AsignatureDTO;
 import edu.cc.notecloud.entity.Asignature;
-import edu.cc.notecloud.services.AsignatureService;
+import edu.cc.notecloud.services.AsignatureRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -18,16 +18,46 @@ public class AsignatureBean implements Serializable {
     private AsignatureDTO newAsignature;
 
     @Inject
-    AsignatureService asignatureService;
+    AsignatureRepository asignatureRepository;
 
     @PostConstruct
     public void init() {
-        asignatures = asignatureService.findAll();
+        asignatures = asignatureRepository.findAll();
         newAsignature = new AsignatureDTO();
+    }
+
+    public void create() {
+        asignatureRepository.create(newAsignature);
+        newAsignature = new AsignatureDTO(); // Limpia el formulario
+        asignatures = asignatureRepository.findAll(); // Refresca la tabla
     }
 
     public String goToNotes(Long asignatureId) {
         return "apuntes.xhtml?faces-redirect=true&asignatureId=" + asignatureId;
+    }
+
+    public List<Asignature> getAsignatures() {
+        return asignatures;
+    }
+
+    public void setAsignatures(List<Asignature> asignatures) {
+        this.asignatures = asignatures;
+    }
+
+    public AsignatureDTO getNewAsignature() {
+        return newAsignature;
+    }
+
+    public void setNewAsignature(AsignatureDTO newAsignature) {
+        this.newAsignature = newAsignature;
+    }
+
+    public AsignatureRepository getAsignatureRepository() {
+        return asignatureRepository;
+    }
+
+    public void setAsignatureRepository(AsignatureRepository asignatureRepository) {
+        this.asignatureRepository = asignatureRepository;
     }
 }
 

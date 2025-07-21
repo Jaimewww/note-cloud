@@ -1,0 +1,29 @@
+<!-- apuntes.xhtml -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Apuntes</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h1>Apuntes de #{noteListBean.asignatureName}</h1>
+
+        <p:dataTable value="#{noteListBean.notes}" var="note">
+            <p:column headerText="Título">
+                #{note.title}
+            </p:column>
+            <p:column headerText="Acciones">
+                <p:commandButton value="Ver detalle" action="#{noteListBean.goToDetail(note.id)}"/>
+            </p:column>
+        </p:dataTable>
+
+        <h2>Nuevo Apunte</h2>
+        <p:inputText value="#{noteListBean.newNote.title}" placeholder="Título"/>
+        <p:inputTextarea value="#{noteListBean.newNote.content}" placeholder="Descripción"/>
+        <p:inputText value="#{noteListBean.newNote.pdfPath}" placeholder="Ruta del PDF"/>
+        <p:commandButton value="Crear" action="#{noteListBean.createNote}" update="@form"/>
+    </h:form>
+</h:body>
+</html>
