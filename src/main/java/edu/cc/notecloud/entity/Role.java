@@ -9,9 +9,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-public class Role implements java.io.Serializable{
+import java.util.List;
 
+@Entity
+@Table(name="roles")
+public class Role implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

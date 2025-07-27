@@ -1,6 +1,8 @@
 package edu.cc.notecloud.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
@@ -9,11 +11,14 @@ import java.time.LocalDateTime;
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name = "post_type", length = 20)
 public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="title" ,nullable = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     private String title;
 
     @Lob
@@ -23,6 +28,11 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
 
     @Column(name = "created_at",nullable = false)
     private LocalDateTime createdAt;

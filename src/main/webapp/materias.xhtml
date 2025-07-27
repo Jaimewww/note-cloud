@@ -1,0 +1,27 @@
+<!-- materias.xhtml -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Materias</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h1>Materias</h1>
+
+        <p:dataTable value="#{asignatureBean.asignatures}" var="asig">
+            <p:column headerText="Nombre">
+                #{asig.name}
+            </p:column>
+            <p:column headerText="Acciones">
+                <p:commandButton value="Ver apuntes" action="#{asignatureBean.goToNotes(asig.id)}"/>
+            </p:column>
+        </p:dataTable>
+
+        <h2>Agregar Materia</h2>
+        <p:inputText value="#{asignatureBean.newAsignature.name}" placeholder="Nombre de la asignatura"/>
+        <p:commandButton value="Agregar" action="#{asignatureBean.create}" update="@form"/>
+    </h:form>
+</h:body>
+</html>

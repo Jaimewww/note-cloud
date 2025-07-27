@@ -5,14 +5,20 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class NoteDTO {
-    @NotBlank(message = "ERROR: El título de la nota es obligatorio")
-    @Size(max = 100, message = "ERROR: El título no puede tener más de 100 caracteres")
+    @NotBlank(message = "ERROR: El título es obligatorio")
+    @Size(max = 100, message = "ERROR: El título no puede exceder los 100 caracteres")
     private String title;
 
-    @NotBlank(message = "ERROR: El contenido de la nota es obligatorio")
+    @Size(max = 1000, message = "ERROR: La descripción no puede exceder los 1000 caracteres")
     private String content;
 
-    @NotNull (message = "ERROR: Se requiere el ID del usuario que crea la nota")
+    @NotBlank(message = "ERROR: Se requiere una ruta válida para el PDF")
+    private String pdfPath;
+
+    @NotNull(message = "ERROR: La asignatura es obligatoria")
+    private Long asignatureId;
+
+    @NotNull(message = "ERROR: El usuario es obligatorio")
     private Long userId;
 
     public String getTitle() {
@@ -29,6 +35,22 @@ public class NoteDTO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getPdfPath() {
+        return pdfPath;
+    }
+
+    public void setPdfPath(String pdfPath) {
+        this.pdfPath = pdfPath;
+    }
+
+    public Long getAsignatureId() {
+        return asignatureId;
+    }
+
+    public void setAsignatureId(Long asignatureId) {
+        this.asignatureId = asignatureId;
     }
 
     public Long getUserId() {

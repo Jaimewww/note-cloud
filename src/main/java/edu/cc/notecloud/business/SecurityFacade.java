@@ -93,8 +93,12 @@ public class SecurityFacade {
             byte[] hash = BCrypt.withDefaults().hash(12, rawPassword);
             u.setPasswordHash(hash);
 
-            Role rol = em.find(Role.class, 1L);
-            u.setRole(rol);
+            Role role = em.find(Role.class, 1L); // USER
+            if (role == null) {
+                throw new IllegalStateException("No existe el rol con ID 1 (USER). Verifica initial-data.sql");
+            }
+            u.setRole(role);
+
             u.setEnabled(true);
 
             em.persist(u);

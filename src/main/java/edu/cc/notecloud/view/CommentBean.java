@@ -1,6 +1,6 @@
 package edu.cc.notecloud.view;
 
-import edu.cc.notecloud.dto.CommentDTO;
+import edu.cc.notecloud.dto.ComentaryDTO;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
@@ -12,13 +12,13 @@ public class CommentBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private CommentDTO comment = new CommentDTO();
+    private ComentaryDTO comment = new ComentaryDTO();
 
-    public CommentDTO getComment() {
+    public ComentaryDTO getComment() {
         return comment;
     }
 
-    public void setComment(CommentDTO comment) {
+    public void setComment(ComentaryDTO comment) {
         this.comment = comment;
     }
 
