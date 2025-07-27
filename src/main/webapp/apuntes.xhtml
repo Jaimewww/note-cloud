@@ -1,32 +1,251 @@
-<!-- apuntes.xhtml -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+
+      lang="es">
 <h:head>
-    <title>Apuntes</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NoteCloud</title>
+
+    <!-- Ícono de pestaña -->
+    <link rel="icon" href="images/note.png" type="image/png" />
+
+    <!-- Iconos Lineicons -->
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+    <!-- Google Fonts corregido -->
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Chewydisplay=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styleapuntes.css" />
+
+    <h:outputStylesheet library="primefaces" name="primefaces.css"/>
+    <h:outputScript library="primefaces" name="primefaces.js"/>
+
 </h:head>
 <h:body>
-    <h:form>
-        <h1>Apuntes de #{noteListBean.asignatureName}</h1>
 
-        <p:dataTable value="#{noteListBean.notes}" var="note">
-            <p:column headerText="Id">
-                #{note.id}
-            </p:column>
-            <p:column headerText="Título">
-                #{note.title}
-            </p:column>
-            <p:column headerText="Acciones">
-                <p:commandButton value="Ver detalle" action="#{noteListBean.goToDetail(note.id)}"/>
-            </p:column>
-        </p:dataTable>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <h:graphicImage value="images/cloud.png" alt="Logo" styleClass="logo-image" />
 
-        <h2>Nuevo Apunte</h2>
-        <p:inputText value="#{noteListBean.newNote.title}" placeholder="Título"/>
-        <p:inputTextarea value="#{noteListBean.newNote.content}" placeholder="Descripción"/>
-        <p:inputText value="#{noteListBean.newNote.pdfPath}" placeholder="Ruta del PDF"/>
-        <p:commandButton value="Crear" action="#{noteListBean.createNote}" update="@form"/>
+                <!-- Menú de botones -->
+                <div class="menu-buttons">
+                    <h:form>
+                        <!-- Opción recomendada -->
+                        <h:button value="Tareas" outcome="/tareas.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Apuntes" outcome="/apuntes.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Foro" outcome="/foro.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Salir" outcome="/login.xhtml" styleClass="sidebar-btn" />
+
+                    </h:form>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="user-info">
+                <h:graphicImage value="images/avatar.png" styleClass="user-photo" alt="Foto Usuario" />
+                <span class="user-name">#{userBean.loggedUser != null ? userBean.loggedUser.nombre : 'sout.zoe'}</span>
+            </div>
+            <!-- Botón solo para admin -->
+            <h:form rendered="#{userBean.securityFacade.isAdmin(userBean.loggedUser)}">
+                <h:commandButton value="Administrar Materias" styleClass="btn-task-action" action="materias.xhtml?faces-redirect=true" />
+            </h:form>
+            <section class="greeting-section">
+                <div class="yellow-box">
+                    <div class="greeting-content">
+                        <h1> Apuntes Importantes</h1>
+                        <p>Organiza y secciona cada uno de tus documentos</p>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Sección de tarjetas de materias -->
+            <section class="subject-cards-section" style="margin-top: 30px;">
+                <h2>Mis Materias</h2>
+
+                <div class="subject-grid-container">
+                    <!-- Tarjeta 1 -->
+
+
+                    <div class="subject-card">
+
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>DISEÑO DE CIRCUITOS</h3>
+                                <div class="card-category">Ingeniería</div>
+                            </div>
+                            <div class="card-description">
+                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
+                            </div>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="lni lni-calendar"></i>
+                                    <span>Inicia: 05 Mayo</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-timer"></i>
+                                    <span>Horario: Lunes 8:00-10:00</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-user"></i>
+                                    <span>Docente: Ing. Cesar</span>
+                                </div>
+                            </div>
+                            <h:form>
+                                <h:button value="Ver Apuntes" outcome="/apuntes1.xhtml" styleClass="sidebar-btn" />
+                            </h:form>
+                        </div>
+                        <!-- Tarjeta 2 -->
+
+                    </div>
+                    <div class="subject-card">
+
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>PROGRAMACIÓN ORIENTADA A OBJETOS</h3>
+                                <div class="card-category">Ingeniería</div>
+                            </div>
+                            <div class="card-description">
+                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
+                            </div>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="lni lni-calendar"></i>
+                                    <span>Inicia: 05 Mayo</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-timer"></i>
+                                    <span>Horario: Lunes 8:00-10:00</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-user"></i>
+                                    <span>Docente: Ing. Wilman Chamba</span>
+                                </div>
+                            </div>
+                            <h:form>
+                                <h:button value="Ver Apuntes" outcome="/apuntes2.xhtml" styleClass="sidebar-btn" />
+                            </h:form>
+                        </div>
+                    </div>
+                    <!-- Tarjeta 3 -->
+                    <div class="subject-card">
+
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>ANALISIS MATEMÁTICO</h3>
+                                <div class="card-category">Ingeniería</div>
+                            </div>
+                            <div class="card-description">
+                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
+                            </div>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="lni lni-calendar"></i>
+                                    <span>Inicia: 05 Mayo</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-timer"></i>
+                                    <span>Horario: Lunes 8:00-10:00</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-user"></i>
+                                    <span>Docente: Ing. Franco Salcedo</span>
+                                </div>
+                            </div>
+                            <h:form>
+                                <h:button value="Ver Apuntes" outcome="/apuntes3.xhtml" styleClass="sidebar-btn" />
+                            </h:form>
+                        </div>
+                    </div>
+
+                    <div class="subject-card">
+
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>EMPRENDIMIENTO Y GESTIÓN TECNOLOGICA</h3>
+                                <div class="card-category">Ingeniería</div>
+                            </div>
+                            <div class="card-description">
+                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
+                            </div>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="lni lni-calendar"></i>
+                                    <span>Inicia: 05 Mayo</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-timer"></i>
+                                    <span>Horario: Lunes 8:00-10:00</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-user"></i>
+                                    <span>Docente: Ing. Valeria</span>
+                                </div>
+                            </div>
+                            <h:form>
+                                <h:button value="Ver Apuntes" outcome="/apuntes4.xhtml" styleClass="sidebar-btn" />
+                            </h:form>
+                        </div>
+                    </div>
+                    <div class="subject-card">
+
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3>PROBABILIDAD</h3>
+                                <div class="card-category">Ingeniería</div>
+                            </div>
+                            <div class="card-description">
+                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
+                            </div>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="lni lni-calendar"></i>
+                                    <span>Inicia: 05 Mayo</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-timer"></i>
+                                    <span>Horario: Lunes 8:00-10:00</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="lni lni-user"></i>
+                                    <span>Docente: Ing. Valeria</span>
+                                </div>
+                            </div>
+                            <h:form>
+                                <h:button value="Ver Apuntes" outcome="/apuntes5.xhtml" styleClass="sidebar-btn" />
+                            </h:form>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <h:form id="dialogForm">
+        <p:dialog header="Subir Apuntes PDF" widgetVar="apunteDialog" modal="true" resizable="false" width="400">
+            <p:fileUpload value="#{apunteBean.archivo}" mode="simple"
+                          allowTypes="/(\.|\/)(pdf)$/"
+                          label="Subir PDF"
+                          auto="true"
+                          listener="#{apunteBean.subir}" />
+        </p:dialog>
     </h:form>
+
+
+
 </h:body>
+
 </html>

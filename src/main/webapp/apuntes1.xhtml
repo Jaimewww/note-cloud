@@ -33,7 +33,7 @@
         <main class="main-content">
             <div class="user-info">
                 <h:graphicImage value="images/avatar.png" styleClass="user-photo" alt="Foto Usuario" />
-                <span class="user-name">#{userBean.loggedUser != null ? userBean.loggedUser.username : 'sout.zoe'}</span>
+                <span class="user-name">#{userBean.loggedUser != null ? userBean.loggedUser.nombre : 'sout.zoe'}</span>
             </div>
 
             <section class="greeting-section">
@@ -68,9 +68,9 @@
 
                         <h:form prependId="false">
                             <div class="form-group">
-                                <h:outputLabel for="materia" value="Materia:" styleClass="label-style" />
-                                <h:inputText id="materia" styleClass="input-style"
-                                             placeholder="Ingrese materia" />
+                                <h:outputLabel for="titulo" value="Titulo:" styleClass="label-style" />
+                                <h:inputText  id="titulo" styleClass="input-style"
+                                             placeholder="Ingrese el título" />
                             </div>
 
                             <div class="form-group">
