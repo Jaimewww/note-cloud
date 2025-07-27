@@ -11,6 +11,9 @@
         <h1>Apuntes de #{noteListBean.asignatureName}</h1>
 
         <p:dataTable value="#{noteListBean.notes}" var="note">
+            <p:column headerText="Id">
+                #{note.id}
+            </p:column>
             <p:column headerText="Título">
                 #{note.title}
             </p:column>

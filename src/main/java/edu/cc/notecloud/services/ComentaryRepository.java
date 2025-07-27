@@ -25,6 +25,9 @@ public class ComentaryRepository {
     @Inject
     private NoteRepository noteRepository;
 
+    @Inject
+    UserRepository userRepository;
+
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Comentary save(@NotNull Comentary comentary) {
         return crudService.create(comentary);
@@ -43,6 +46,7 @@ public class ComentaryRepository {
         Comentary comment = new Comentary();
         comment.setTitle(dto.getTitle());
         comment.setContent(dto.getContent());
+        comment.setUser(userRepository.findById(dto.getUserId()).orElse(null));
         comment.setCreatedAt(LocalDateTime.now());
         comment.setState(true);
         comment.setNote(noteRepository.findById(noteId));

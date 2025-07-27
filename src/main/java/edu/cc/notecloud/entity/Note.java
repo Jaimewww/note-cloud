@@ -9,9 +9,6 @@ import java.time.LocalDateTime;
 @Table(name = "notes")
 @DiscriminatorValue("note")
 public class Note extends Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "pdf_path", nullable = false)
     private String pdfPath;
@@ -19,16 +16,6 @@ public class Note extends Post {
     @ManyToOne(optional = false)
     @JoinColumn(name = "asignature_id")
     private Asignature asignature;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getPdfPath() {
         return pdfPath;

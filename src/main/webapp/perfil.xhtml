@@ -6,6 +6,8 @@
 <h:body>
     <h1>Bienvenido al login</h1>
     <h:panelGrid columns="2">
+        <h:outputText value="Id:" />
+        <h:outputText value="#{userBean.loggedUser.id}" />
         <h:outputText value="Nombre:" />
         <h:outputText value="#{userBean.loggedUser.nombre}" />
         <h:outputText value="Email:" />

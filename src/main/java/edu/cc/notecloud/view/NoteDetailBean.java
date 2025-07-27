@@ -1,6 +1,7 @@
 package edu.cc.notecloud.view;
 
 import edu.cc.notecloud.dto.ComentaryDTO;
+import edu.cc.notecloud.dto.NoteDTO;
 import edu.cc.notecloud.entity.Comentary;
 import edu.cc.notecloud.entity.Note;
 import edu.cc.notecloud.services.ComentaryRepository;
@@ -29,6 +30,9 @@ public class NoteDetailBean implements Serializable {
     @Inject
     private ComentaryRepository comentaryRepository;
 
+    @Inject
+    private UserBean userBean;
+
     @PostConstruct
     public void init() {
         String noteIdParam = FacesContext.getCurrentInstance()
@@ -48,6 +52,8 @@ public class NoteDetailBean implements Serializable {
     }
 
     public void addComment() {
+        Long userId = userBean.getLoggedUser().getId();
+        newComment.setUserId(userId);
         comentaryRepository.save(noteId, newComment);
         newComment = new ComentaryDTO(); // limpia el formulario
         comments = comentaryRepository.findByNoteId(noteId); // recarga comentarios
@@ -100,5 +106,13 @@ public class NoteDetailBean implements Serializable {
 
     public void setComentaryRepository(ComentaryRepository comentaryRepository) {
         this.comentaryRepository = comentaryRepository;
+    }
+
+    public UserBean getUserBean() {
+        return userBean;
+    }
+
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
     }
 }

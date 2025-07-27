@@ -24,6 +24,9 @@ public class NoteListBean implements Serializable {
     @Inject
     NoteRepository noteRepository;
 
+    @Inject
+    UserBean userBean;
+
     @PostConstruct
     public void init() {
         String asignatureIdParam = FacesContext.getCurrentInstance()
@@ -45,8 +48,8 @@ public class NoteListBean implements Serializable {
 
     public void createNote() {
         // Simulación del ID del usuario logueado (en producción lo sacas del contexto)
-        Long fakeUserId = 1L;
-        newNote.setUserId(fakeUserId);
+        Long userId = userBean.getLoggedUser().getId();
+        newNote.setUserId(userId);
 
         noteRepository.createNote(newNote);
         newNote = new NoteDTO();
