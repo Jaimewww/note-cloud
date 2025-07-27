@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.cc.notecloud</groupId>
@@ -10,32 +11,34 @@
     <version>0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <!-- ──────────────── PROPERTIES ──────────────── -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
         <jakartaee-api.version>10.0.0</jakartaee-api.version>
         <compiler-plugin.version>3.13.0</compiler-plugin.version>
         <war-plugin.version>3.4.0</war-plugin.version>
         <liberty-plugin.version>3.10.3</liberty-plugin.version>
 
-        <!--START DATASOURCE CONFIG-->
-<!--        <driver.jdbc.dir>${server.config.dir}/lib/global</driver.jdbc.dir>-->
-        <db.server.name>localhost</db.server.name>
-        <db.port.number>3306</db.port.number>
+        <!-- DATASOURCE CONFIG -->
+        <driver.jdbc.dir>src/main/lib/global</driver.jdbc.dir>
+        <db.host>localhost</db.host>
+        <db.port>3306</db.port>
+        <db.name>notecloud</db.name>
+        <db.user>notecloudUser</db.user>
+        <db.pass>admin@987</db.pass>
 
-        <!--COPIAR VALORES DE CONFIG PARA server.xml-->
+        <!-- PASAR VARIABLES A LIBERTY -->
         <liberty.bootstrap.driver.jdbc.dir>${driver.jdbc.dir}</liberty.bootstrap.driver.jdbc.dir>
-        <liberty.bootstrap.db.server.name>${db.server.name}</liberty.bootstrap.db.server.name>
-        <liberty.bootstrap.db.port.number>${db.port.number}</liberty.bootstrap.db.port.number>
-
+        <liberty.bootstrap.db.host>${db.host}</liberty.bootstrap.db.host>
+        <liberty.bootstrap.db.port>${db.port}</liberty.bootstrap.db.port>
+        <liberty.bootstrap.db.name>${db.name}</liberty.bootstrap.db.name>
+        <liberty.bootstrap.db.user>${db.user}</liberty.bootstrap.db.user>
+        <liberty.bootstrap.db.pass>${db.pass}</liberty.bootstrap.db.pass>
     </properties>
 
-    <!-- ──────────────── DEPENDENCIES ──────────────── -->
     <dependencies>
 
-        <!-- API plataforma (scope provided) -->
+        <!-- Jakarta EE API -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>
@@ -43,7 +46,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- EclipseLink 4 (el contenedor lo carga) -->
+        <!-- EclipseLink JPA -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
@@ -51,14 +54,14 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Driver MySQL – se copiará a lib/global, no al WAR -->
+        <!-- MySQL Driver -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>9.3.0</version>
         </dependency>
 
-        <!-- PrimeFaces 15 (Jakarta) -->
+        <!-- PrimeFaces -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
@@ -66,13 +69,12 @@
             <classifier>jakarta</classifier>
         </dependency>
 
+        <!-- Otras dependencias... -->
         <dependency>
             <groupId>com.google.api-client</groupId>
             <artifactId>google-api-client</artifactId>
             <version>1.32.1</version>
         </dependency>
-
-        <!-- Utilidades varias -->
         <dependency>
             <groupId>at.favre.lib</groupId>
             <artifactId>bcrypt</artifactId>
@@ -89,19 +91,18 @@
             <version>8.3.2</version>
         </dependency>
 
-        <!-- JUnit 5 -->
+        <!-- JUnit 5 para tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
-    <!-- ──────────────── BUILD ──────────────── -->
     <build>
         <finalName>note-cloud</finalName>
-
         <plugins>
 
             <!-- Compilador -->
@@ -118,6 +119,7 @@
                 <version>${war-plugin.version}</version>
             </plugin>
 
+            <!-- Copiar driver MySQL a lib/global -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -136,18 +138,15 @@
                         <artifactItem>
                             <groupId>com.mysql</groupId>
                             <artifactId>mysql-connector-j</artifactId>
-                            <!--<version>la-version</version>-->
                             <type>jar</type>
                             <overWrite>true</overWrite>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                            <!--<destFileName>nombre-del-archivo.jar</destFileName>-->
+                            <outputDirectory>${project.build.directory}/lib/global</outputDirectory>
                         </artifactItem>
                     </artifactItems>
                 </configuration>
             </plugin>
 
-
-            <!-- Open Liberty -->
+            <!-- Plugin Liberty -->
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
@@ -164,6 +163,8 @@
                     </copyDependencies>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
+
 </project>

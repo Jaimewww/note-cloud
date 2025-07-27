@@ -4,7 +4,7 @@ COPY src/main/liberty/config/server.xml /config/server.xml
 
 COPY target/note-cloud.war /config/apps/
 
-COPY target/lib/mysql-connector-j-*.jar /config/lib/global/
+COPY target/lib/global/mysql-connector-j-*.jar /config/lib/global/
 
 USER root
 RUN chmod -R g+w /config && \

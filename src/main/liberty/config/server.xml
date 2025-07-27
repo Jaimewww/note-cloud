@@ -23,7 +23,7 @@
     <logging traceSpecification="JPA=all"/>
 
     <!-- ─────── VARIABLES ────────────────────────────────────────────── -->
-    <!-- Directorio *dentro* del servidor donde colocas el JAR del driver -->
+    <!-- Directorio dentro del servidor donde colocas el JAR del driver -->
     <variable name="jdbcLibDir" value="${server.config.dir}/lib"/>
     <!-- Datos de la BBDD Docker (puedes sobreescribir con server.env) -->
     <variable name="db.host" value="localhost"/>
