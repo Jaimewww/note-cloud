@@ -1,4 +1,4 @@
-package edu.cc.notecloud.business.services;
+package edu.cc.notecloud.services;
 
 import edu.cc.notecloud.entity.Role;
 import jakarta.ejb.Stateless;

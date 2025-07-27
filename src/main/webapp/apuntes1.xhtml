@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      lang="es">
+<h:head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NoteCloud</title>
+    <link rel="icon" href="images/note.png" type="image/png" />
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Chewy|Poppins:400,600,700display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="Apuntes11.css" />
+</h:head>
+<h:body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <h:graphicImage value="images/cloud.png" alt="Logo" styleClass="logo-image" />
+                <div class="menu-buttons">
+                    <h:form>
+                        <h:button value="Tareas" outcome="/tareas.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Apuntes" outcome="/apuntes.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Foro" outcome="/foro.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Salir" outcome="/login.xhtml" styleClass="sidebar-btn" />
+                    </h:form>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="user-info">
+                <h:graphicImage value="images/avatar.png" styleClass="user-photo" alt="Foto Usuario" />
+                <span class="user-name">#{userBean.loggedUser != null ? userBean.loggedUser.username : 'sout.zoe'}</span>
+            </div>
+
+            <section class="greeting-section">
+                <div class="yellow-box">
+                    <div class="greeting-content">
+                        <h1>Lista de Apuntes</h1>
+                        <p></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contenedor de botones con los dos botones -->
+            <div class="horizontal-btn-container">
+                <h:button value="Volver" outcome="/apuntes.xhtml" styleClass="btn-task-action" />
+                <h:commandButton value="Agregar Apunte" styleClass="btn-task-action" onclick="addNote()" />
+            </div>
+
+            <section class="note-section">
+                <div id="notesContainer">
+                    <div class="pink-box">
+                        <div class="note-title">
+                            Agregar un nuevo apunte
+                            <h:commandButton type="button" styleClass="btn-add"
+                                             value="+"
+                                             onclick="addNote()"
+                                             title="Agregar nueva nota" />
+                            <h:commandButton type="button" styleClass="btn-mark"
+                                             value="✔"
+                                             onclick="markNote(this)"
+                                             title="Marcar como realizada" />
+                        </div>
+
+                        <h:form prependId="false">
+                            <div class="form-group">
+                                <h:outputLabel for="materia" value="Materia:" styleClass="label-style" />
+                                <h:inputText id="materia" styleClass="input-style"
+                                             placeholder="Ingrese materia" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="link" value="Link:" styleClass="label-style" />
+                                <h:inputText id="link" styleClass="input-style"
+                                             placeholder="Ingrese URL del recurso" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="fecha" value="Fecha:" styleClass="label-style" />
+                                <h:inputText id="fecha" styleClass="input-style" type="date" />
+                            </div>
+
+                            <h:commandButton value="Guardar Apunte" styleClass="btn-save" />
+                        </h:form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function markNote(button) {
+            const noteBox = button.closest('.pink-box');
+            if(noteBox) {
+                noteBox.style.display = 'none';
+            }
+        }
+
+        function addNote() {
+            const original = document.querySelector('#notesContainer .pink-box');
+            if(!original) return;
+
+            const clone = original.cloneNode(true);
+            clone.style.display = 'block';
+
+            const inputs = clone.querySelectorAll('input[type="text"], textarea');
+            inputs.forEach(input => input.value = '');
+
+            const dateInputs = clone.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => input.value = '');
+
+            document.getElementById('notesContainer').appendChild(clone);
+            clone.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</h:body>
+</html>

@@ -58,4 +58,5 @@ public class RegisterBean implements Serializable {
             Arrays.fill(raw, '\0');
         }
     }
+
 }

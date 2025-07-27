@@ -3,6 +3,7 @@ package edu.cc.notecloud.view;
 import edu.cc.notecloud.dto.NoteDTO;
 import edu.cc.notecloud.entity.Note;
 import edu.cc.notecloud.services.NoteRepository;
+import edu.cc.notecloud.exception.EntityNotFoundException;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -46,7 +47,7 @@ public class NoteListBean implements Serializable {
         }
     }
 
-    public void createNote() {
+    public void createNote() throws EntityNotFoundException {
         // Simulación del ID del usuario logueado (en producción lo sacas del contexto)
         Long userId = userBean.getLoggedUser().getId();
         newNote.setUserId(userId);

@@ -2,7 +2,10 @@ package edu.cc.notecloud.services;
 
 import edu.cc.notecloud.entity.User;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 import java.util.HashMap;
 import java.util.List;

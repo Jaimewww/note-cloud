@@ -17,6 +17,10 @@
         <class>edu.cc.notecloud.entity.Role</class>
         <class>edu.cc.notecloud.entity.Post</class>
         <class>edu.cc.notecloud.entity.Forum</class>
+        <class>edu.cc.notecloud.entity.Asignature</class>
+        <class>edu.cc.notecloud.entity.Comentary</class>
+        <class>edu.cc.notecloud.entity.Note</class>
+        <class>edu.cc.notecloud.entity.Task</class>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 

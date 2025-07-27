@@ -1,0 +1,807 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One|Chewy&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #bfd7ed;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #3b7382;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 0 15px;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 2px 0 8px rgba(44, 44, 101, 0.07);
+}
+
+
+
+
+
+
+
+.logo-text {
+    margin-top: 4px; /* ajuste para acercar el texto al logo */
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    user-select: none;
+}
+
+
+
+/* Botones relacionados */
+.btn-add {
+    background: #fff;
+    color: #c14373;
+    font-weight: bold;
+    font-size: 1.7em;
+    border: none;
+    border-radius: 7px;
+    width: 36px;
+    height: 34px;
+    cursor: pointer;
+    float: right;
+    margin-top: -3px;
+    margin-right: -80px;
+    transition: background 0.18s;
+}
+
+.btn-add:hover {
+    background: #ffdce6;
+}
+
+/* Botón GUARDAR con misma fuente y rosado, grande, centrado */
+.btn-save {
+    display: block;
+    width: 80%;
+    margin: 20px auto 0;
+    background: #fff;
+    color: #c14373;
+    border: none;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px #e7afbccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-save:hover {
+    background: #ffe7ef;
+}
+
+.btn-mark {
+    background: #fff;
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 1.7em;
+    border: none;
+    border-radius: 7px;
+    width: 36px;
+    height: 34px;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: background 0.18s;
+}
+
+.btn-mark:hover {
+    background: #d4edda;
+}
+
+/* Aquí añado tu botón verde hoja para "Agregar nota" */
+.btn-add-note-main {
+    background-color: #4CAF50;      /* Verde hoja */
+    color: white;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+.btn-add-note-main:hover {
+    background-color: #45a049;      /* Verde un poco más oscuro al hover */
+}
+
+
+.logout-button {
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    user-select: none;
+
+    margin-left: auto;      /* Si contenedor es flex fila (horizontal) */
+
+}
+
+.logout-button:hover {
+    background-color: #506d89;
+    text-decoration: none;
+}
+
+.logout-button i {
+    font-size: 1.2em;
+}
+
+
+
+
+.sidebar {
+    width: 250px;
+    background-color: #bfd7ed;
+    color: #fff;
+    padding: 32px 20px 15px;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 2px 0 8px rgba(44, 44, 101, 0.07);
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.logo-image {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;  /* espacio pequeño solo debajo del logo */
+}
+
+.logo-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+    /* opcional: margin-top: 0; para asegurarte que no haya espacio extra arriba */
+    margin-top: 0;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Disminuir gap para acercar texto al logo */
+    gap: 6px; /* menos espacio entre logo y texto */
+}
+
+/* Botones: más espacio entre ellos */
+.menu-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* un poco más de espacio */
+    gap: 40px;  /* aumenta el espacio vertical entre botones */
+}
+
+/* Botones ocupan todo el ancho */
+.sidebar-btn {
+    width: 100%;
+    padding: 14px 0;
+    background-color: #fff;
+    color: #252525;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1.12rem;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    outline: none;
+    box-shadow: none;
+    text-align: center;
+}
+
+/* Hover y focus */
+.sidebar-btn:hover,
+.sidebar-btn:focus {
+    background-color: #e3e6e8;
+}
+
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #fff;
+    color: #232340;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 20px 20px 0;
+    max-width: calc(100% - 270px);
+    margin: 40px 40px 40px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.user-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4e7cb2;
+}
+
+.user-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #232340;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+.yellow-box {
+    background-color: #a3d5f7;
+    border-radius: 20px;
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-right: 38.8px solid #0077b6;
+}
+
+.greeting-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #232340;
+}
+
+.greeting-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    color: #232340;
+}
+
+/* Estilos para el recuadro de notas */
+.pink-box {
+    background: #e6f4ff; /* Celeste claro */
+    border-radius: 18px;
+    margin: 24px auto;
+    padding: 28px 26px 21px;
+    width: 100%;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+    position: relative;
+    border-left: 5px solid #3b7382;
+    transition: all 0.3s ease;
+}
+
+.pink-box:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+}
+
+.note-title {
+     font-family: 'Poppins', sans-serif;
+     font-weight: 700;
+     font-size: 1.5rem;
+     color: #3b7382;
+     margin-bottom: 15px;
+     display: flex;
+     align-items: center; /* Asegura que todos los elementos hijos estén alineados verticalmente */
+     justify-content: space-between;
+ }
+
+
+.input-style,
+.textarea-style {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #232340;
+    background: #fff;
+    border: 1px solid #d1e0ff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.input-style:focus,
+.textarea-style:focus {
+    outline: none;
+    border-color: #3b7382;
+}
+
+.label-style {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #3b7382;
+    margin-top: 15px;
+}
+
+.btn-add {
+    background: #fff;
+    color: #3b7382;
+    font-weight: bold;
+    font-size: 1.7em;
+    border: none;
+    border-radius: 7px;
+    width: 36px;
+    height: 34px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: auto; /* Esto lo empujará todo a la derecha */
+    margin-right: 0; /* Elimina cualquier margen derecho existente */
+}
+
+.btn-add:hover {
+    background: #d1e0ff;
+    transform: scale(1.1);
+}
+.btn-mark {
+    background: #fff;
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 1.7em;
+    border: none;
+    border-radius: 7px;
+    width: 36px;
+    height: 34px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-mark:hover {
+    background: #d4edda;
+    transform: scale(1.1);
+}
+
+.btn-save {
+    display: block;
+    width: 100%;
+    margin: 20px auto 0;
+    background: #3b7382;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-save:hover {
+    background: #2c5866;
+    color: white !important;
+}
+
+#notesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+        margin: 20px;
+        max-width: calc(100% - 40px);
+    }
+
+    .yellow-box {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .pink-box {
+        width: 100%;
+    }
+}
+/* Contenedor de botones horizontal */
+.horizontal-btn-container {
+    background-color: #b9d9dc; /* Celeste claro */
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Botones estilo minimalista */
+.btn-task-action {
+    background: none;
+    border: 2px solid #3b7382;
+    color: #3b7382;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    flex: 1;
+    max-width: 200px;
+    text-align: center;
+}
+
+.btn-task-action:hover {
+    background-color: #3b7382;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 115, 130, 0.2);
+}
+/* Panel de edición */
+.edit-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-top: 5px solid #3b7382;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+/* Estructura del panel */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.panel-header h2 {
+    color: #3b7382;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+/* Botones de acción */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-save {
+    background-color: #3b7382;
+    color: white;
+    padding: 12px 25px;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 25px;
+}
+
+/* Botón Detalles en tabla */
+.btn-details {
+    background-color: #3b7382;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-details:hover {
+    background-color: #2c5866;
+}
+/* Panel de edición */
+.edit-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-top: 5px solid #3b7382;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.panel-header h2 {
+    color: #3b7382;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+/* Formulario dentro del panel */
+.edit-panel .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-panel .form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.edit-panel .form-textarea {
+    min-height: 120px;
+}
+
+/* Botones de acción */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-save {
+    background-color: #3b7382;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 2;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+}
+
+/* Fondo oscuro cuando el panel está abierto */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    display: none;
+}
+/* CONTENEDOR PRINCIPAL DE LA TABLA */
+.task-table-container {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+/* ESTILOS DE LA TABLA */
+.task-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.task-table th {
+    background-color: #3b7382;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    border: none;
+}
+
+.task-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle;
+}
+
+.task-table tr:not(:first-child):hover {
+    background-color: #e6f4ff;
+}
+
+/* CHECKBOX PERSONALIZADO */
+.task-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3b7382;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.task-checkbox:checked {
+    background-color: #3b7382;
+}
+
+.task-checkbox:checked::after {
+    content: "✓";
+    color: white;
+    position: absolute;
+    left: 4px;
+    top: -2px;
+    font-size: 16px;
+}
+
+/* BOTONES DE ACCIÓN */
+.btn-details {
+    background: none;
+    border: 2px solid #3b7382;
+    color: #3b7382;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-details:hover {
+    background-color: #3b7382;
+    color: white;
+}
+
+/* FORMULARIO FLOTANTE (para agregar tareas) */
+.task-form {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-top: 5px solid #3b7382;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.form-header h2 {
+    color: #3b7382;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #3b7382;
+    font-weight: 600;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.btn-save-task {
+    background-color: #3b7382;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.btn-save-task:hover {
+    background-color: #2c5866;
+}
+
+/* EFECTO PARA FILAS COMPLETADAS */
+.task-completed td {
+    background-color: #f0fff0;
+    color: #666;
+    text-decoration: line-through;
+}

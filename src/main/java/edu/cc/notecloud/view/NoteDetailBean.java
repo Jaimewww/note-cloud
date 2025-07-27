@@ -1,7 +1,6 @@
 package edu.cc.notecloud.view;
 
 import edu.cc.notecloud.dto.ComentaryDTO;
-import edu.cc.notecloud.dto.NoteDTO;
 import edu.cc.notecloud.entity.Comentary;
 import edu.cc.notecloud.entity.Note;
 import edu.cc.notecloud.services.ComentaryRepository;

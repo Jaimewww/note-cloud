@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      lang="es">
+<h:head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NoteCloud - Tabla de Tareas</title>
+
+    <!-- Ícono de pestaña -->
+    <link rel="icon" href="images/note.png" type="image/png" />
+
+    <!-- Iconos Lineicons -->
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Chewy|Poppins:400,600,700display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="TablaTareas.css" />
+</h:head>
+<h:body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <h:graphicImage value="images/cloud.png" alt="Logo" styleClass="logo-image" />
+                <!-- Menú de botones -->
+                <div class="menu-buttons">
+                    <h:form>
+                        <!-- Opción recomendada -->
+                        <h:button value="Tareas" outcome="/tareas.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Apuntes" outcome="/apuntes.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Foro" outcome="/foro.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Salir" outcome="/login.xhtml" styleClass="sidebar-btn" />
+
+                    </h:form>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="user-info">
+                <h:graphicImage value="images/avatar.png" styleClass="user-photo" alt="Foto Usuario" />
+                <span class="user-name">#{userBean.loggedUser != null ? userBean.loggedUser.username : 'sout.zoe'}</span>
+            </div>
+
+            <section class="greeting-section">
+                <div class="yellow-box">
+                    <div class="greeting-content">
+                        <h1>Tabla de Tareas</h1>
+                        <p>Visualiza y gestiona todas tus tareas</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="horizontal-btn-container">
+                <!-- Opción recomendada -->
+                <h:button value="Volver" outcome="/tareas.xhtml" styleClass="btn-task-action" />
+
+                <h:commandButton value="Agregar Tarea" styleClass="btn-task-action" onclick="showAddForm()" />
+            </div>
+            <!-- Tabla de tareas -->
+            <div class="task-table-container">
+                <table class="task-table">
+                    <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Fecha de vencimiento</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Tarea de ejemplo</td>
+                        <td>25/07/2025</td>
+                        <td><h:selectBooleanCheckbox styleClass="task-checkbox" /></td>
+                        <td>
+                            <h:commandButton value="Detalles" styleClass="btn-details" />
+                        </td>
+                    </tr>
+                    <!-- Filas adicionales irían aquí -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Formulario para agregar tarea (inicialmente oculto) -->
+            <div id="addTaskForm" class="task-form" style="display:none;">
+                <div class="form-header">
+                    <h2>Agregar Nueva Tarea</h2>
+                    <h:commandButton value="×" styleClass="btn-close" onclick="hideAddForm()" />
+                </div>
+                <h:form>
+                    <div class="form-group">
+                        <h:outputLabel value="Título:" styleClass="form-label" />
+                        <h:inputText styleClass="form-input" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="Descripción:" styleClass="form-label" />
+                        <h:inputTextarea styleClass="form-textarea" rows="3" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="Fecha de vencimiento:" styleClass="form-label" />
+                        <h:inputText styleClass="form-input" type="date" />
+                    </div>
+                    <h:commandButton value="Guardar Tarea" styleClass="btn-save-task" />
+                </h:form>
+            </div>
+
+            <div id="editTaskPanel" class="edit-panel" style="display:none;">
+                <div class="panel-header">
+                    <h2>Editar Tarea</h2>
+                    <button class="btn-close" onclick="hideEditPanel()">×</button>
+                </div>
+                <h:form>
+                    <div class="form-group">
+                        <h:outputLabel value="Título:" styleClass="form-label" />
+                        <h:inputText id="editTitle" styleClass="form-input" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="Descripción:" styleClass="form-label" />
+                        <h:inputTextarea id="editDescription" styleClass="form-textarea" rows="4" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="Fecha de vencimiento:" styleClass="form-label" />
+                        <h:inputText id="editDueDate" styleClass="form-input" type="date" />
+                    </div>
+                    <div class="form-actions">
+                        <h:commandButton value="Guardar Cambios" styleClass="btn-save" />
+                        <h:commandButton value="Eliminar Tarea" styleClass="btn-delete" onclick="deleteTask()" />
+                    </div>
+                </h:form>
+            </div>
+
+            <script>
+                // Muestra el panel de edición con los datos de la tarea
+                function showEditPanel(taskId, title, description, dueDate) {
+                    document.getElementById('editTitle').value = title;
+                    document.getElementById('editDescription').value = description;
+                    document.getElementById('editDueDate').value = dueDate;
+                    document.getElementById('editTaskPanel').style.display = 'block';
+
+                    // Guarda el ID de la tarea que se está editando
+                    document.getElementById('editTaskPanel').dataset.taskId = taskId;
+                }
+
+                function hideEditPanel() {
+                    document.getElementById('editTaskPanel').style.display = 'none';
+                }
+
+                function deleteTask() {
+                    const taskId = document.getElementById('editTaskPanel').dataset.taskId;
+                    // Aquí iría la lógica para eliminar la tarea
+                    hideEditPanel();
+                    // Actualizar la tabla después de eliminar
+                }
+            </script>
+        </main>
+    </div>
+
+    <script>
+        function showAddForm() {
+            document.getElementById('addTaskForm').style.display = 'block';
+        }
+
+        function hideAddForm() {
+            document.getElementById('addTaskForm').style.display = 'none';
+        }
+    </script>
+
+</h:body>
+</html>

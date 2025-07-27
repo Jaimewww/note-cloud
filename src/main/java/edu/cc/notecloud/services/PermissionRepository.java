@@ -1,4 +1,4 @@
-package edu.cc.notecloud.business.services;
+package edu.cc.notecloud.services;
 
 import edu.cc.notecloud.security.Permission;
 import edu.cc.notecloud.exception.EntityNotFoundException;

@@ -1,31 +1,22 @@
 <server description="defaultServer">
 
-    <!-- ─────── FEATURES ──────────────────────────────────────────────── -->
     <featureManager>
-        <!-- webProfile-10 ya incluye JPA, CDI, Faces, etc. -->
         <feature>webProfile-10.0</feature>
     </featureManager>
 
-    <!-- ─────── SEGURIDAD BÁSICA DEL ADMIN ───────────────────────────── -->
     <basicRegistry id="defaultBasicRegistry" realm="BasicRealm">
         <user name="username" password="password"/>
     </basicRegistry>
     <keyStore id="defaultKeyStore" password="password"/>
 
-    <!-- ─────── ENDPOINT HTTP(S) ─────────────────────────────────────── -->
     <httpEndpoint id="defaultHttpEndpoint"
                   host="*"  httpPort="9080"  httpsPort="9443"/>
 
-    <!-- ─────── REGISTRO / TRAZAS ────────────────────────────────────── -->
     <logging consoleFormat="SIMPLE" consoleLogLevel="INFO"/>
     <logging messageFormat="TBASIC"  messageLogLevel="INFO"/>
-    <!-- Seguimiento detallado de JPA (útil mientras depuras) -->
     <logging traceSpecification="JPA=all"/>
 
-    <!-- ─────── VARIABLES ────────────────────────────────────────────── -->
-    <!-- Directorio dentro del servidor donde colocas el JAR del driver -->
     <variable name="jdbcLibDir" value="${server.config.dir}/lib"/>
-    <!-- Datos de la BBDD Docker (puedes sobreescribir con server.env) -->
     <variable name="db.host" value="localhost"/>
     <variable name="db.port" value="3306"/>
     <variable name="db.name" value="notecloud"/>
@@ -40,23 +31,16 @@
         </defaultProperties>
     </jpa>
 
-
-    <!-- ─────── DATASOURCE JTA ───────────────────────────────────────── -->
     <dataSource id="MySQLDS" jndiName="jdbc/MySQLDS">
         <jdbcDriver id="mysql-driver" libraryRef="MySqlJDBCLib"/>
-        <properties serverName="${db.server.name}"
-                    portNumber="${db.port.number}"
-                    databaseName="notecloud"
+        <properties serverName="${db.host}"  portNumber="${db.port}"  databaseName="notecloud"
                     user="notecloudUser"
                     password="admin@987"
                     useSSL="false" serverTimezone="UTC"/>
-
     </dataSource>
 
-    <!-- ─────── APLICACIÓN WEB ───────────────────────────────────────── -->
     <webApplication location="note-cloud.war" contextRoot="/"/>
 
-    <!-- Referencia al driver JDBC de MySQL -->
     <library id="MySqlJDBCLib">
         <fileset dir="${jdbcLibDir}/global" includes="mysql-connector-j-*.jar"/>
     </library>

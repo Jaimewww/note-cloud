@@ -1,0 +1,744 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One|Chewy&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #bfd7ed;
+    color: #fff;
+    min-height: 100vh;
+}
+
+
+.sidebar {
+    width: 250px;
+    background-color: #3b7382;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 0 15px;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 2px 0 8px rgba(44, 44, 101, 0.07);
+}
+.btn-add-note {
+    background-color: #4CAF50;     /* Verde inicial */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 10px;
+    width: 150px;
+    text-transform: uppercase;
+    user-select: none;
+    align-self: center;
+}
+
+.btn-add-note:hover {
+    background-color: #87CEFA;      /* Azul claro (LightSkyBlue) */
+    color: white;                   /* Texto blanco */
+}
+
+.logo-text {
+    margin-top: 4px; /* ajuste para acercar el texto al logo */
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    user-select: none;
+}
+
+/* Botones relacionados */
+.btn-add {
+    background: #fff;
+    color: #c14373;
+    font-weight: bold;
+    font-size: 1.7em;
+    border: none;
+    border-radius: 7px;
+    width: 36px;
+    height: 34px;
+    cursor: pointer;
+    float: right;
+    margin-top: -3px;
+    margin-right: -80px;
+    transition: background 0.18s;
+}
+
+.btn-add:hover {
+    background: #ffdce6;
+}
+
+/* Botón GUARDAR con misma fuente y rosado, grande, centrado */
+.btn-save {
+    display: block;
+    width: 80%;
+    margin: 20px auto 0;
+    background: #fff;
+    color: #c14373;
+    border: none;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px #e7afbccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-save:hover {
+    background: #ffe7ef;
+}
+
+.btn-mark {
+    background: #fff;
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 1.7em;
+    border: none;
+    border-radius: 7px;
+    width: 36px;
+    height: 34px;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: background 0.18s;
+}
+
+.btn-mark:hover {
+    background: #d4edda;
+}
+
+/* Aquí añado tu botón verde hoja para "Agregar nota" */
+.btn-add-note-main {
+    background-color: #4CAF50;      /* Verde hoja */
+    color: white;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+.btn-add-note-main:hover {
+    background-color: #45a049;      /* Verde un poco más oscuro al hover */
+}
+
+
+.logout-button {
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    user-select: none;
+
+    margin-left: auto;      /* Si contenedor es flex fila (horizontal) */
+
+}
+
+.logout-button:hover {
+    background-color: #506d89;
+    text-decoration: none;
+}
+
+.logout-button i {
+    font-size: 1.2em;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #bfd7ed;
+    color: #fff;
+    padding: 32px 20px 15px;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 2px 0 8px rgba(44, 44, 101, 0.07);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-image {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;  /* espacio pequeño solo debajo del logo */
+}
+
+.logo-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+    /* opcional: margin-top: 0; para asegurarte que no haya espacio extra arriba */
+    margin-top: 0;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Disminuir gap para acercar texto al logo */
+    gap: 6px; /* menos espacio entre logo y texto */
+}
+
+/* Botones: más espacio entre ellos */
+.menu-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* un poco más de espacio */
+    gap: 40px;  /* aumenta el espacio vertical entre botones */
+}
+
+/* Botones ocupan todo el ancho */
+.sidebar-btn {
+    width: 100%;
+    padding: 14px 0;
+    background-color: #fff;
+    color: #252525;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1.12rem;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    outline: none;
+    box-shadow: none;
+    text-align: center;
+}
+
+/* Hover y focus */
+.sidebar-btn:hover,
+.sidebar-btn:focus {
+    background-color: #e3e6e8;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    background: transparent;
+}
+.main-content {
+    flex: 1;
+    background-color: #fff;
+    color: #232340;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 20px 20px 0;
+    width: calc(100% - 270px); /* Cambiado de max-width a width */
+    margin: 40px 40px 40px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.user-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4e7cb2;
+}
+
+.user-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #232340;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+.yellow-box {
+    background-color: #a3d5f7;
+    border-radius: 20px;
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-right: 38.8px solid #0077b6;
+}
+
+.greeting-image {
+    width: 200px;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.greeting-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.greeting-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #232340;
+}
+
+.greeting-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    color: #232340;
+}
+
+
+.user-button .user-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #4e7cb2;
+    object-fit: cover;
+    display: block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background-color: #3a5a72;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    padding: 8px 0;
+    min-width: 140px;
+    margin-top: 8px;
+    z-index: 10000;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #506d89;
+}
+
+.dropdown-item i {
+    font-size: 1.2em;
+}
+
+.arrow-button {
+    width: auto;
+    position: relative;
+    top: 4px;
+    left: -8px;
+    min-width: 80px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 6px;
+    background-color: #b3d9ff;
+    border: none;
+    color: #003366;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* tarjetas responsivas */
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.pdf-card {
+    background-color: #fae384; /* naranja suave */
+    margin-top: 0.5cm; /* desplaza hacia abajo medio centímetro */
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+}
+
+.pdf-card:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.pdf-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.pdf-icon {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.pdf-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 12px;
+    word-break: break-word; /* para nombres largos */
+}
+
+/* Botón abrir estilo simple */
+.btn-open-pdf {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: #4a90e2;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-open-pdf:hover {
+    background-color: #357abd;
+}
+
+.btn-delete {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #ff4d4f;
+    border: 2px solid #FFA500;     /* Borde naranja intenso */
+    color: white;
+    font-size: 1.3rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    z-index: 10;
+}
+
+.btn-delete:hover {
+    background-color: #d9363e;
+    color: white;
+    border-color: #FF8C00;         /* Naranja más oscuro en hover */
+}
+
+/* ESTILOS PARA LAS TARJETAS DE MATERIAS */
+
+
+/* Reemplaza el .subject-grid-container existente con este: */
+
+}
+.subject-cards-section {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.subject-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    padding: 15px 0;
+}
+/* Cambiar el color de las tarjetas a celeste claro */
+.subject-card {
+    background-color: #bde0fe;  /* Celeste claro en lugar de amarillo */
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    border-left: 5px solid #3b7382;
+    transition: all 0.3s ease; /* Añadido para suavizar todas las transiciones */
+}
+
+.subject-header h3 {
+    color: #232340;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.subject-header p {
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-family: 'Poppins', sans-serif;
+}
+
+.subject-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.start-date {
+    color: #3b7382;
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.subject-cards-section h2 {
+    color: #3b7382;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3b7382;
+}
+
+/* Efecto hover para el botón "Ver Apuntes" */
+.btn-view-subject {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: #4a90e2;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.btn-view-subject:hover {
+    background-color: #357abd;
+    color: white !important; /* Fuerza el color blanco al hacer hover */
+    text-shadow: 0 0 2px rgba(255,255,255,0.3); /* Opcional: efecto de sombra para mejor legibilidad */
+}
+
+/* Opcional: si quieres un efecto más suave en el hover de toda la tarjeta */
+.subject-card:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    transform: translateY(-2px); /* Efecto de levitación sutil */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .subject-grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .subject-grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+.rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255,255,255,0.9);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #3b7382;
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #232340;
+    font-size: 1.2rem;
+}
+
+.card-category {
+    display: inline-block;
+    background-color: #e6f2ff;
+    color: #3b7382;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.card-description p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.card-details {
+    margin: 10px 0;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 0.85rem;
+}
+
+.detail-item i {
+    margin-right: 8px;
+    color: #3b7382;
+}
+
+.btn-view-subject {
+    align-self: flex-start;
+    margin-top: auto;
+    background-color: #3b7382;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-view-subject:hover {
+    background-color: #2c5866;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .subject-card {
+        flex-direction: column;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 200px;
+    }
+}
+/* Color celeste bajito para las tarjetas */
+.subject-card {
+    background-color: #e6f4ff;  /* Celeste muy claro */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    border-left: 5px solid #d6a88be; /* Borde lateral celeste */
+}
+
+.subject-card:hover {
+    background-color: #d6a88be; /* Celeste un poco más intenso al pasar el mouse */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+}
+
+/* Ajustes para los elementos internos */
+.card-header h3 {
+    color: #2c3e50; /* Color de texto más oscuro para mejor contraste */
+    margin-bottom: 8px;
+}
+
+.card-category {
+    background-color: #fff59d; /* Celeste un poco más intenso para la categoría */
+    color: #2c5870;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+
+.card-description p {
+    color: #4a6378;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.detail-item {
+    color: #4a6378;
+    margin-bottom: 8px;
+}
+
+.detail-item i {
+    color: #d6a88be; /* Celeste para los iconos */
+    margin-right: 8px;
+}
+
+.btn-view-subject {
+    background-color: #87CEEB;  /* Celeste claro estándar */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-view-subject:hover {
+    background-color: #6CB4EE;  /* Un celeste un poco más oscuro al pasar el mouse */
+}

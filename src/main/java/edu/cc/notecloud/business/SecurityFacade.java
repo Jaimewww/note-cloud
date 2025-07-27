@@ -6,11 +6,7 @@ import edu.cc.notecloud.entity.Role;
 import edu.cc.notecloud.entity.User;
 import edu.cc.notecloud.security.ActionType;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,13 +20,12 @@ import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-@RequestScoped
+@Stateless
 public class SecurityFacade {
 
     @PersistenceContext(unitName = "NoteCloudPU")
     private EntityManager em;
 
-    //@Transactional
     public User loginGoogleUser(String nombre, String email) {
         try {
             User u;
@@ -62,7 +57,6 @@ public class SecurityFacade {
         }
     }
 
-    //@Transactional
     public User authenticate(String email, char[] rawPassword) {
         try {
             User user = em.createQuery(
@@ -83,7 +77,6 @@ public class SecurityFacade {
         }
     }
 
-    //@Transactional
     public User createUser(String nombre, String email, char[] rawPassword) {
         try {
             User u = new User();
@@ -109,7 +102,6 @@ public class SecurityFacade {
         }
     }
 
-    //@Transactional
     public User findUserByEmail(String email) {
         try {
             return em.createQuery(
@@ -123,7 +115,6 @@ public class SecurityFacade {
         }
     }
 
-    //@Transactional
     public User updateUser(User user) {
         try {
             User existingUser = em.find(User.class, user.getId());
@@ -171,9 +162,6 @@ public class SecurityFacade {
         return new ArrayList<>(role.getPermissions());
     }
 
-    /**
-     * Verifica si el usuario tiene un permiso específico
-     */
     public boolean hasPermission(User user, String resource, String action) {
         if (user == null || resource == null || action == null) return false;
 
