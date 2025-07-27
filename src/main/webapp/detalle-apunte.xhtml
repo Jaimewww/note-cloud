@@ -15,14 +15,13 @@
 
         <h2>Comentarios</h2>
 
-        <p:dataTable value="#{noteDetailBean.comments}" var="asig">
-            <p:column headerText="Title">
-                #{asig.title}
-            </p:column>
-            <p:column headerText="Content">
-                #{asig.content}
-            </p:column>
-        </p:dataTable>
+        <p:dataList value="#{noteDetailBean.comments}" var="comment" type="ordered">
+            <div style="margin-bottom: 1rem">
+                <p:panel header="#{comment.title}">
+                    #{comment.content}
+                </p:panel>
+            </div>
+        </p:dataList>
 
         <h3>Agregar Comentario</h3>
         <p:inputText value="#{noteDetailBean.newComment.title}" placeholder="Título"/>
