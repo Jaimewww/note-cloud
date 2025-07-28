@@ -11,12 +11,12 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PWD}
     ports:
-      - 3307:3306
+      - ${DB_MYSQL_PORT_PUBLIC}:3306
     volumes:
       - notecloud-mysql-data:/var/lib/mysql
     networks:
       notecloud-network:
-        ipv4_address: 172.28.0.250
+        ipv4_address: 173.21.0.250
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$${MYSQL_USER}", "-p$${MYSQL_PASSWORD}"]
       interval: 10s
@@ -27,7 +27,7 @@ services:
   # Adminer
   mysql-adminer-bd:
     image: adminer
-    container_name: mysql-adminer-bd-container-new
+    container_name: mysql-adminer-bd-container
     restart: unless-stopped
     ports:
       - 8081:8080
@@ -35,38 +35,38 @@ services:
       - notecloud-mysql-db
     networks:
       notecloud-network:
-        ipv4_address: 172.28.0.253
+        ipv4_address: 173.21.0.253
 
-  notecloud-app:
-    build: .
-    container_name: notecloud-app-container
-    restart: unless-stopped
-    depends_on:
-      - notecloud-mysql-db
-    environment:
-      DB_HOST: notecloud-mysql-db
-      DB_PORT: 3306
-      DB_NAME: notecloud
-      DB_USER: notecloudUser
-      DB_PWD: admin@987
-    ports:
-      - 9081:9081   # HTTP
-      - 9444:9444   # HTTPS
-    volumes:
-      - .:/workspace
-    networks:
-      notecloud-network:
-        ipv4_address: 172.28.0.100
-    env_file:
-      - .env
-
+#  notecloud-app:
+#    build: .
+#    container_name: notecloud-app-container
+#    restart: unless-stopped
+#    depends_on:
+#      - notecloud-mysql-db
+#    environment:
+#      DB_HOST: notecloud-mysql-db
+#      DB_PORT: 3306
+#      DB_NAME: notecloud
+#      DB_USER: notecloudUser
+#      DB_PWD: admin@987
+#    ports:
+#      - 9081:9081   # HTTP
+#      - 9444:9444   # HTTPS
+#    volumes:
+#      - .:/workspace
+#    networks:
+#      notecloud-network:
+#        ipv4_address: 173.21.0.100
+#    env_file:
+#      - src/main/liberty/config/server.env
+#
 networks:
   notecloud-network:
     driver: bridge
     ipam:
       driver: default
       config:
-        - subnet: 172.28.0.0/16
+        - subnet: 173.21.0.0/24
 
 volumes:
   notecloud-mysql-data:
