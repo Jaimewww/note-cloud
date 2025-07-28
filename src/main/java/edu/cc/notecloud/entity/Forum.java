@@ -16,7 +16,7 @@ public class Forum extends Post {
     private Integer commentsCount;
 
     public Integer getCommentsCount() {
-        return commentsCount;
+        return comments.size();
     }
 
     public void setCommentsCount(Integer commentsCount) {

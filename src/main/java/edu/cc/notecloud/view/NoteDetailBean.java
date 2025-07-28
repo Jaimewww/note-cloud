@@ -81,6 +81,10 @@ public class NoteDetailBean implements Serializable {
         comments = comentaryRepository.findByNoteId(forumId); // recarga comentarios
     }
 
+    public boolean isNoteComment() {
+        return noteId != null;
+    }
+
 
 
     public Note getNote() {

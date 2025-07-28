@@ -49,14 +49,16 @@
                         #{noteDetailBean.note.title}
                         <h:button value="Volver" outcome="/apuntes1.xhtml?asignatureId=#{noteDetailBean.note.asignature.id}" styleClass="btn-task-action" />
                     </div>
-                    <div class="form-group">
-                        <h:outputLabel value="Descripción:" styleClass="label-style" />
-                        <h:outputText value="#{noteDetailBean.note.content}" styleClass="input-style" />
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel value="PDF:" styleClass="label-style" />
-                        <p:link value="Ver PDF" href="#{noteDetailBean.note.pdfPath}" target="_blank" styleClass="btn-save" />
-                    </div>
+                    <h:form rendered="#{noteDetailBean.isNoteComment()}">
+                        <div class="form-group">
+                            <h:outputLabel value="Descripción:" styleClass="label-style" />
+                            <h:outputText value="#{noteDetailBean.note.content}" styleClass="input-style" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="PDF:" styleClass="label-style" />
+                            <p:link value="Ver PDF" href="#{noteDetailBean.note.pdfPath}" target="_blank" styleClass="btn-save" />
+                        </div>
+                    </h:form>
                 </div>
             </section>
             <section class="note-section">
