@@ -72,7 +72,7 @@ public class AuthBean implements Serializable {
             userBean.setAccessToken(credential.getAccessToken());
             userBean.setLoggedUser(googleUser);
 
-            FacesContext.getCurrentInstance().getExternalContext().redirect("perfil.xhtml?faces-redirect=true");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("apuntes.xhtml?faces-redirect=true");
         } catch (Exception e) {
             e.printStackTrace();
             FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml?error");

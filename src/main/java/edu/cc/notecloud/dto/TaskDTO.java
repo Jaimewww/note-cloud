@@ -1,10 +1,13 @@
 package edu.cc.notecloud.dto;
 
+
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 public class TaskDTO {
     @NotBlank(message = "ERROR: El título es obligatorio")
@@ -15,7 +18,8 @@ public class TaskDTO {
     @Size(max = 200, message = "ERROR: La descripción no puede exceder los 200 caracteres")
     private String description;
 
-    @FutureOrPresent(message = "La fecha de vencimiento debe ser hoy o en el futuro")
+    @NotNull(message = "ERROR: La fecha de vencimiento es obligatoria")
+    @FutureOrPresent(message = "ERROR: La fecha de vencimiento debe ser hoy o en el futuro")
     private Date dueDate;
 
     public String getTitle() {
@@ -41,4 +45,6 @@ public class TaskDTO {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
+
+
 }

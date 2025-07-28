@@ -2,7 +2,7 @@ package edu.cc.notecloud.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "tasks")
@@ -19,6 +19,7 @@ public class Task {
     private String description;
 
     @Column(name = "due_date",nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dueDate;
 
     @Column (nullable = false, name = "completed")
@@ -70,6 +71,10 @@ public class Task {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public boolean getCompleted() {
+        return completed;
     }
 
     public User getUser() {

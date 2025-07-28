@@ -53,4 +53,8 @@ public class UserBean implements Serializable {
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
+
+    public SecurityFacade getSecurityFacade() {
+        return securityFacade;
+    }
 }

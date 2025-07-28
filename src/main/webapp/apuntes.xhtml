@@ -70,167 +70,18 @@
             </section>
 
             <!-- Sección de tarjetas de materias -->
-            <section class="subject-cards-section" style="margin-top: 30px;">
-                <h2>Mis Materias</h2>
-
-                <div class="subject-grid-container">
-                    <!-- Tarjeta 1 -->
-
-
-                    <div class="subject-card">
-
-                        <div class="card-content">
-                            <div class="card-header">
-                                <h3>DISEÑO DE CIRCUITOS</h3>
-                                <div class="card-category">Ingeniería</div>
-                            </div>
-                            <div class="card-description">
-                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
-                            </div>
-                            <div class="card-details">
-                                <div class="detail-item">
-                                    <i class="lni lni-calendar"></i>
-                                    <span>Inicia: 05 Mayo</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-timer"></i>
-                                    <span>Horario: Lunes 8:00-10:00</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-user"></i>
-                                    <span>Docente: Ing. Cesar</span>
-                                </div>
-                            </div>
-                            <h:form>
-                                <h:button value="Ver Apuntes" outcome="/apuntes1.xhtml" styleClass="sidebar-btn" />
-                            </h:form>
+            <p:dataList value="#{asignatureBean.asignatures}" var="asig" type="definition">
+                <div class="subject-card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3>#{asig.name}</h3>
                         </div>
-                        <!-- Tarjeta 2 -->
-
+                        <h:form>
+                            <p:commandButton value="Ver apuntes" action="#{asignatureBean.goToNotes(asig.id)}"/>
+                        </h:form>
                     </div>
-                    <div class="subject-card">
-
-                        <div class="card-content">
-                            <div class="card-header">
-                                <h3>PROGRAMACIÓN ORIENTADA A OBJETOS</h3>
-                                <div class="card-category">Ingeniería</div>
-                            </div>
-                            <div class="card-description">
-                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
-                            </div>
-                            <div class="card-details">
-                                <div class="detail-item">
-                                    <i class="lni lni-calendar"></i>
-                                    <span>Inicia: 05 Mayo</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-timer"></i>
-                                    <span>Horario: Lunes 8:00-10:00</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-user"></i>
-                                    <span>Docente: Ing. Wilman Chamba</span>
-                                </div>
-                            </div>
-                            <h:form>
-                                <h:button value="Ver Apuntes" outcome="/apuntes2.xhtml" styleClass="sidebar-btn" />
-                            </h:form>
-                        </div>
-                    </div>
-                    <!-- Tarjeta 3 -->
-                    <div class="subject-card">
-
-                        <div class="card-content">
-                            <div class="card-header">
-                                <h3>ANALISIS MATEMÁTICO</h3>
-                                <div class="card-category">Ingeniería</div>
-                            </div>
-                            <div class="card-description">
-                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
-                            </div>
-                            <div class="card-details">
-                                <div class="detail-item">
-                                    <i class="lni lni-calendar"></i>
-                                    <span>Inicia: 05 Mayo</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-timer"></i>
-                                    <span>Horario: Lunes 8:00-10:00</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-user"></i>
-                                    <span>Docente: Ing. Franco Salcedo</span>
-                                </div>
-                            </div>
-                            <h:form>
-                                <h:button value="Ver Apuntes" outcome="/apuntes3.xhtml" styleClass="sidebar-btn" />
-                            </h:form>
-                        </div>
-                    </div>
-
-                    <div class="subject-card">
-
-                        <div class="card-content">
-                            <div class="card-header">
-                                <h3>EMPRENDIMIENTO Y GESTIÓN TECNOLOGICA</h3>
-                                <div class="card-category">Ingeniería</div>
-                            </div>
-                            <div class="card-description">
-                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
-                            </div>
-                            <div class="card-details">
-                                <div class="detail-item">
-                                    <i class="lni lni-calendar"></i>
-                                    <span>Inicia: 05 Mayo</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-timer"></i>
-                                    <span>Horario: Lunes 8:00-10:00</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-user"></i>
-                                    <span>Docente: Ing. Valeria</span>
-                                </div>
-                            </div>
-                            <h:form>
-                                <h:button value="Ver Apuntes" outcome="/apuntes4.xhtml" styleClass="sidebar-btn" />
-                            </h:form>
-                        </div>
-                    </div>
-                    <div class="subject-card">
-
-                        <div class="card-content">
-                            <div class="card-header">
-                                <h3>PROBABILIDAD</h3>
-                                <div class="card-category">Ingeniería</div>
-                            </div>
-                            <div class="card-description">
-                                <p>Lección sobre diseño de circuitos electrónicos y planificación de proyectos</p>
-                            </div>
-                            <div class="card-details">
-                                <div class="detail-item">
-                                    <i class="lni lni-calendar"></i>
-                                    <span>Inicia: 05 Mayo</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-timer"></i>
-                                    <span>Horario: Lunes 8:00-10:00</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="lni lni-user"></i>
-                                    <span>Docente: Ing. Valeria</span>
-                                </div>
-                            </div>
-                            <h:form>
-                                <h:button value="Ver Apuntes" outcome="/apuntes5.xhtml" styleClass="sidebar-btn" />
-                            </h:form>
-
-                        </div>
-                    </div>
-
                 </div>
-
-            </section>
+            </p:dataList>
         </main>
     </div>
 

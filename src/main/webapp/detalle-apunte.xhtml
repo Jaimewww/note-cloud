@@ -2,31 +2,88 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      lang="es">
 <h:head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalle del Apunte</title>
+    <link rel="icon" href="images/note.png" type="image/png" />
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Chewy|Poppins:400,600,700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="Apuntes11.css" />
+    <link rel="stylesheet" href="styleapuntes.css" />
 </h:head>
 <h:body>
-    <h:form>
-        <h1>#{noteDetailBean.note.title}</h1>
-        <h:outputText value="#{noteDetailBean.note.content}"/>
-        <br/>
-        <p:link value="Ver PDF" href="#{noteDetailBean.note.pdfPath}" target="_blank"/>
-
-        <h2>Comentarios</h2>
-
-        <p:dataList value="#{noteDetailBean.comments}" var="comment" type="ordered">
-            <div style="margin-bottom: 1rem">
-                <p:panel header="#{comment.title}">
-                    #{comment.content}
-                </p:panel>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <h:graphicImage value="images/cloud.png" alt="Logo" styleClass="logo-image" />
+                <div class="menu-buttons">
+                    <h:form>
+                        <h:button value="Tareas" outcome="/tareas.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Apuntes" outcome="/apuntes.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Foro" outcome="/foro.xhtml" styleClass="sidebar-btn" />
+                        <h:button value="Salir" outcome="/login.xhtml" styleClass="sidebar-btn" />
+                    </h:form>
+                </div>
             </div>
-        </p:dataList>
-
-        <h3>Agregar Comentario</h3>
-        <p:inputText value="#{noteDetailBean.newComment.title}" placeholder="Título"/>
-        <p:inputTextarea value="#{noteDetailBean.newComment.content}" placeholder="Comentario"/>
-        <p:commandButton value="Comentar" action="#{noteDetailBean.addComment}" update="@form"/>
-    </h:form>
+        </aside>
+        <main class="main-content">
+            <div class="user-info">
+                <h:graphicImage value="images/avatar.png" styleClass="user-photo" alt="Foto Usuario" />
+                <span class="user-name">#{userBean.loggedUser != null ? userBean.loggedUser.nombre : 'sout.zoe'}</span>
+            </div>
+            <section class="greeting-section">
+                <div class="yellow-box">
+                    <div class="greeting-content">
+                        <h1>Detalle del Apunte</h1>
+                        <p>Consulta la información y comentarios del apunte seleccionado</p>
+                    </div>
+                </div>
+            </section>
+            <section class="note-section">
+                <div class="pink-box">
+                    <div class="note-title">
+                        #{noteDetailBean.note.title}
+                        <h:button value="Volver" outcome="/apuntes1.xhtml?asignatureId=#{noteDetailBean.note.asignature.id}" styleClass="btn-task-action" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="Descripción:" styleClass="label-style" />
+                        <h:outputText value="#{noteDetailBean.note.content}" styleClass="input-style" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="PDF:" styleClass="label-style" />
+                        <p:link value="Ver PDF" href="#{noteDetailBean.note.pdfPath}" target="_blank" styleClass="btn-save" />
+                    </div>
+                </div>
+            </section>
+            <section class="note-section">
+                <div class="pink-box">
+                    <div class="note-title">Comentarios</div>
+                    <p:dataList value="#{noteDetailBean.comments}" var="comment" type="ordered">
+                        <div style="margin-bottom: 1rem">
+                            <p:panel header="#{comment.title}">
+                                #{comment.content}
+                            </p:panel>
+                        </div>
+                    </p:dataList>
+                    <h3 style="margin-top:2rem;">Agregar Comentario</h3>
+                    <h:form prependId="false">
+                        <div class="form-group">
+                            <h:outputLabel for="titulo" value="Título:" styleClass="label-style" />
+                            <p:inputText id="titulo" value="#{noteDetailBean.newComment.title}" styleClass="input-style" placeholder="Título" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel for="comentario" value="Comentario:" styleClass="label-style" />
+                            <p:inputTextarea id="comentario" value="#{noteDetailBean.newComment.content}" styleClass="textarea-style" placeholder="Comentario" />
+                        </div>
+                        <p:commandButton value="Comentar" action="#{noteDetailBean.addComment}" update="@form" styleClass="btn-save" />
+                    </h:form>
+                </div>
+            </section>
+        </main>
+    </div>
 </h:body>
 </html>

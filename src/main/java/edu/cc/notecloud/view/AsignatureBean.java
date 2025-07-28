@@ -33,7 +33,7 @@ public class AsignatureBean implements Serializable {
     }
 
     public String goToNotes(Long asignatureId) {
-        return "apuntes.xhtml?faces-redirect=true&asignatureId=" + asignatureId;
+        return "apuntes1.xhtml?faces-redirect=true&asignatureId=" + asignatureId;
     }
 
     public List<Asignature> getAsignatures() {

@@ -2,8 +2,10 @@ package edu.cc.notecloud.view;
 
 import edu.cc.notecloud.dto.ComentaryDTO;
 import edu.cc.notecloud.entity.Comentary;
+import edu.cc.notecloud.entity.Forum;
 import edu.cc.notecloud.entity.Note;
 import edu.cc.notecloud.services.ComentaryRepository;
+import edu.cc.notecloud.services.ForumRepository;
 import edu.cc.notecloud.services.NoteRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
@@ -20,11 +22,16 @@ public class NoteDetailBean implements Serializable {
 
     private Long noteId;
     private Note note;
+    private Long forumId;
+    private Forum forum;
     private List<Comentary> comments;
     private ComentaryDTO newComment = new ComentaryDTO();
 
     @Inject
     private NoteRepository noteRepository;
+
+    @Inject
+    private ForumRepository forumRepository;
 
     @Inject
     private ComentaryRepository comentaryRepository;
@@ -39,6 +46,11 @@ public class NoteDetailBean implements Serializable {
                 .getRequestParameterMap()
                 .get("noteId");
 
+        String forumIdParam = FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getRequestParameterMap()
+                .get("forumId");
+
         if (noteIdParam != null) {
             try {
                 noteId = Long.parseLong(noteIdParam);
@@ -48,17 +60,29 @@ public class NoteDetailBean implements Serializable {
                 e.printStackTrace();
             }
         }
+
+        if (forumIdParam != null) {
+            try {
+                forumId = Long.parseLong(forumIdParam);
+                forum = forumRepository.findById(forumId);
+                comments = comentaryRepository.findByForumId(forumId);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void addComment() {
         Long userId = userBean.getLoggedUser().getId();
         newComment.setUserId(userId);
-        comentaryRepository.save(noteId, newComment);
+        Long id = forumId != null ? forumId : noteId; // usa forumId si está disponible, sino noteId
+        comentaryRepository.save(id, newComment);
         newComment = new ComentaryDTO(); // limpia el formulario
-        comments = comentaryRepository.findByNoteId(noteId); // recarga comentarios
+        comments = comentaryRepository.findByNoteId(forumId); // recarga comentarios
     }
 
-    // getters y setters
+
+
     public Note getNote() {
         return note;
     }

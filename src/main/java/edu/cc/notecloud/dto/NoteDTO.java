@@ -10,6 +10,7 @@ public class NoteDTO {
     private String title;
 
     @Size(max = 1000, message = "ERROR: La descripción no puede exceder los 1000 caracteres")
+    @NotBlank(message = "ERROR: El contenido de la nota es obligatorio")
     private String content;
 
     @NotBlank(message = "ERROR: Se requiere una ruta válida para el PDF")

@@ -3,17 +3,13 @@ package edu.cc.notecloud.services;
 import edu.cc.notecloud.dto.NoteDTO;
 import edu.cc.notecloud.entity.Note;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 
 @Stateless

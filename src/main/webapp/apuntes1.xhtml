@@ -3,6 +3,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       lang="es">
 <h:head>
     <meta charset="UTF-8" />
@@ -13,8 +14,10 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Chewy|Poppins:400,600,700display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="Apuntes11.css" />
+    <link rel="stylesheet" href="styleapuntes.css" />
 </h:head>
 <h:body>
+    <p:growl id="growl" showSummary="true" globalOnly="false" showDetail="false" life="5000"/>
     <div class="container">
         <aside class="sidebar">
             <div class="logo-section">
@@ -40,7 +43,31 @@
                 <div class="yellow-box">
                     <div class="greeting-content">
                         <h1>Lista de Apuntes</h1>
-                        <p></p>
+                        <p:dataList class="subject-card" value="#{noteListBean.notes}" var="note" type="definition">
+                            <div class="subject-card">
+
+                                <div class="card-content">
+                                    <div class="card-header">
+                                        <h3>#{note.title}</h3>
+                                        <div class="card-category">Ingeniería</div>
+                                    </div>
+                                    <div class="card-description">
+                                        <p>#{note.content}</p>
+                                    </div>
+                                    <div class="card-details">
+                                        <div class="detail-item">
+                                            <i class="lni lni-calendar"></i>
+                                            <span>#{note.createdAt}</span>
+                                        </div>
+                                    </div>
+                                    <h:form>
+                                        <p:commandButton value="Ver detalle" action="#{noteListBean.goToDetail(note.id)}"/>
+                                    </h:form>
+                                </div>
+                                <!-- Tarjeta 2 -->
+
+                            </div>
+                        </p:dataList>
                     </div>
                 </div>
             </section>
@@ -69,22 +96,23 @@
                         <h:form prependId="false">
                             <div class="form-group">
                                 <h:outputLabel for="titulo" value="Titulo:" styleClass="label-style" />
-                                <h:inputText  id="titulo" styleClass="input-style"
+                                <h:inputText value="#{noteListBean.newNote.title}" id="titulo" styleClass="input-style"
                                              placeholder="Ingrese el título" />
                             </div>
 
                             <div class="form-group">
-                                <h:outputLabel for="link" value="Link:" styleClass="label-style" />
-                                <h:inputText id="link" styleClass="input-style"
-                                             placeholder="Ingrese URL del recurso" />
+                                <h:outputLabel for="descripcion" value="Descripcion del apunte:" styleClass="label-style" />
+                                <h:inputText value="#{noteListBean.newNote.content}" id="descripcion" styleClass="input-style"
+                                             placeholder="Ingrese la descripcion" />
                             </div>
 
                             <div class="form-group">
-                                <h:outputLabel for="fecha" value="Fecha:" styleClass="label-style" />
-                                <h:inputText id="fecha" styleClass="input-style" type="date" />
+                                <h:outputLabel for="link" value="Link del pdf:" styleClass="label-style" />
+                                <h:inputText value="#{noteListBean.newNote.pdfPath}" id="link" styleClass="input-style"
+                                             placeholder="Ingrese URL del recurso" />
                             </div>
 
-                            <h:commandButton value="Guardar Apunte" styleClass="btn-save" />
+                            <h:commandButton action="#{noteListBean.createNote}" value="Guardar Apunte" styleClass="btn-save" />
                         </h:form>
                     </div>
                 </div>

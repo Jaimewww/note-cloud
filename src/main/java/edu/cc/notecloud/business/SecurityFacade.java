@@ -7,10 +7,8 @@ import edu.cc.notecloud.entity.User;
 import edu.cc.notecloud.security.ActionType;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -21,7 +19,7 @@ import java.util.List;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Stateless
-public class SecurityFacade {
+public class SecurityFacade implements Serializable {
 
     @PersistenceContext(unitName = "NoteCloudPU")
     private EntityManager em;

@@ -3,115 +3,113 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       lang="es">
 <h:head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NoteCloud</title>
     <link rel="icon" href="images/note.png" type="image/png" />
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Chewy|Poppins:400,600,700display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="Foro.css" />
 </h:head>
+
 <h:body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="logo-section">
-                <h:graphicImage value="images/cloud.png" alt="Logo" styleClass="logo-image" />
-                <div class="menu-buttons">
-                    <h:form>
+    <p:growl id="growl" showSummary="true" globalOnly="false" showDetail="false" life="5000"/>
+
+        <div class="container">
+            <aside class="sidebar">
+                <div class="logo-section">
+                    <h:graphicImage value="images/cloud.png" alt="Logo" styleClass="logo-image" />
+                    <div class="menu-buttons">
                         <h:button value="Tareas" outcome="/tareas.xhtml" styleClass="sidebar-btn" />
                         <h:button value="Apuntes" outcome="/apuntes.xhtml" styleClass="sidebar-btn" />
                         <h:button value="Foro" outcome="/foro.xhtml" styleClass="sidebar-btn" />
                         <h:button value="Salir" outcome="/login.xhtml" styleClass="sidebar-btn" />
-                    </h:form>
-                </div>
-            </div>
-        </aside>
-
-        <main class="main-content">
-            <div class="user-info">
-                <h:graphicImage value="images/avatar.png" styleClass="user-photo" alt="Foto Usuario" />
-                <span class="user-name">#{userBean.loggedUser != null ? userBean.loggedUser.nombre : 'sout.zoe'}</span>
-            </div>
-
-            <section class="greeting-section">
-                <div class="yellow-box">
-                    <div class="greeting-content">
-                        <h1>Foro compartido</h1>
-                        <p>Comparte tus ideas y expresate </p>
-
                     </div>
                 </div>
-            </section>
+            </aside>
 
-            <!-- Contenedor de botones con los dos botones -->
-            <div class="horizontal-btn-container">
+            <main class="main-content">
+                <div class="user-info">
+                    <h:graphicImage value="images/avatar.png" styleClass="user-photo" alt="Foto Usuario" />
+                    <span class="user-name">#{userBean.loggedUser != null ? userBean.loggedUser.nombre : 'sout.zoe'}</span>
+                </div>
 
-                <h:commandButton value="Agregar nuevo Foro" styleClass="btn-task-action" onclick="addNote()" />
-            </div>
-
-            <section class="note-section">
-                <div id="notesContainer">
-                    <div class="pink-box">
-                        <div class="note-title">
-                            Agregar un nuevo tema de Foro
-                            <h:commandButton type="button" styleClass="btn-add"
-                                             value="+"
-                                             onclick="addNote()"
-                                             title="Agregar nueva nota" />
-                            <h:commandButton type="button" styleClass="btn-mark"
-                                             value="✔"
-                                             onclick="markNote(this)"
-                                             title="Marcar como realizada" />
+                <section class="greeting-section">
+                    <div class="yellow-box">
+                        <div class="greeting-content">
+                            <h1>Foro compartido</h1>
+                            <p>Comparte tus ideas y exprésate</p>
                         </div>
-
-                        <h:form prependId="false">
-                            <div class="form-group">
-                                <h:outputLabel for="materia" value="Tema:" styleClass="label-style" />
-                                <h:inputText id="materia" styleClass="input-style"
-                                             placeholder="Ingrese materia" />
-                            </div>
-
-                            <div class="form-group">
-                                <h:outputLabel for="descripcion" value="Descripción:"
-                                               styleClass="label-style" />
-                                <h:inputTextarea id="descripcion" styleClass="textarea-style" rows="3" cols="30" />
-                            </div>
-
-                            <h:commandButton value="Publicar Foro" styleClass="btn-save" />
-                        </h:form>
                     </div>
-                </div>
-            </section>
-        </main>
-    </div>
+                </section>
 
-    <script>
-        function markNote(button) {
-            const noteBox = button.closest('.pink-box');
-            if(noteBox) {
-                noteBox.style.display = 'none';
-            }
-        }
+                <section class="note-section">
+                    <div id="notesContainer">
+                        <div class="pink-box">
+                            <div class="note-title">
+                                Agregar un nuevo tema de Foro
+                            </div>
 
-        function addNote() {
-            const original = document.querySelector('#notesContainer .pink-box');
-            if(!original) return;
+                            <!-- Formulario de creación del foro -->
+                            <h:messages styleClass="message-error" layout="list" />
 
-            const clone = original.cloneNode(true);
-            clone.style.display = 'block';
+                            <h:form>
+                                <h:panelGrid columns="1" styleClass="form-style">
 
-            const inputs = clone.querySelectorAll('input[type="text"], textarea');
-            inputs.forEach(input => input.value = '');
+                                    <div class="form-group">
+                                        <h:outputLabel for="titulo" value="Tema del foro:" styleClass="label-style" />
+                                        <h:inputText id="titulo" value="#{forumBean.newForum.title}" required="true"
+                                                     styleClass="input-style"
+                                                     placeholder="Ingrese tema">
+                                            <f:validateLength maximum="100" />
+                                        </h:inputText>
+                                    </div>
 
-            const dateInputs = clone.querySelectorAll('input[type="date"]');
-            dateInputs.forEach(input => input.value = '');
+                                    <div class="form-group">
+                                        <h:outputLabel for="contenido" value="Descripción del foro:" styleClass="label-style" />
+                                        <h:inputTextarea id="contenido" value="#{forumBean.newForum.content}"
+                                                         rows="4" cols="30" styleClass="textarea-style"
+                                                         placeholder="Ingrese descripción">
+                                            <f:validateLength maximum="2000" />
+                                        </h:inputTextarea>
+                                    </div>
 
-            document.getElementById('notesContainer').appendChild(clone);
-            clone.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+                                    <h:commandButton value="Publicar Foro"
+                                                     action="#{forumBean.createForum}"
+                                                     styleClass="btn-save">
+                                        <f:ajax execute="@form" render="@form :forumList" />
+                                    </h:commandButton>
+
+                                </h:panelGrid>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Lista de foros publicados -->
+                <section class="note-section">
+                    <h:panelGroup id="forumList">
+                        <ui:repeat value="#{forumBean.forums}" var="forum">
+                            <div class="pink-box">
+                                <h3 class="note-title">#{forum.title}</h3>
+                                <p>#{forum.content}</p>
+                                <p><strong>Autor:</strong> #{forum.user.nombre}</p>
+                                <p><strong>Comentarios:</strong> #{forum.commentsCount}</p>
+
+                                <!-- Formulario separado para evitar validaciones innecesarias -->
+                                <h:form>
+                                    <p:commandButton value="Ver detalle" action="#{forumBean.goToDetail(forum.id)}" />
+                                </h:form>
+
+                            </div>
+                        </ui:repeat>
+                    </h:panelGroup>
+                </section>
+            </main>
+        </div>
+
 </h:body>
 </html>

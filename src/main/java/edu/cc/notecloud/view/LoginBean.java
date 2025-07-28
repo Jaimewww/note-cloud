@@ -57,7 +57,7 @@ public class LoginBean implements Serializable {
                 // Aquí se cargan los permisos
                 this.permissions = securityFacade.getPermissionsOf(user);
 
-                return "perfil.xhtml?faces-redirect=true";
+                return "apuntes.xhtml?faces-redirect=true";
             } else {
                 FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Credenciales inválidas"));

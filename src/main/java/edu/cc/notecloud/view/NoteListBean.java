@@ -9,6 +9,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.validation.Valid;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,6 +21,8 @@ public class NoteListBean implements Serializable {
     private Long asignatureId;
     private String asignatureName;
     private List<Note> notes;
+
+    @Valid
     private NoteDTO newNote = new NoteDTO();
 
     @Inject

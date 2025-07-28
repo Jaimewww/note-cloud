@@ -2,6 +2,7 @@ package edu.cc.notecloud.services;
 
 import edu.cc.notecloud.dto.ComentaryDTO;
 import edu.cc.notecloud.entity.Comentary;
+import edu.cc.notecloud.entity.Forum;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
@@ -26,6 +27,9 @@ public class ComentaryRepository {
     private NoteRepository noteRepository;
 
     @Inject
+    private  ForumRepository forumRepository;
+
+    @Inject
     UserRepository userRepository;
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -42,14 +46,24 @@ public class ComentaryRepository {
         );
     }
 
-    public void save(Long noteId, ComentaryDTO dto) {
+    public List<Comentary> findByForumId(@NotNull Long forumId) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", forumId);
+        return crudService.findWithQuery(
+                "SELECT c FROM Comentary c WHERE c.forum.id = :id",
+                params
+        );
+    }
+
+    public void save(Long id, ComentaryDTO dto) {
         Comentary comment = new Comentary();
         comment.setTitle(dto.getTitle());
         comment.setContent(dto.getContent());
         comment.setUser(userRepository.findById(dto.getUserId()).orElse(null));
         comment.setCreatedAt(LocalDateTime.now());
         comment.setState(true);
-        comment.setNote(noteRepository.findById(noteId));
+        comment.setNote(noteRepository.findById(id));
+        comment.setForum(forumRepository.findById(id));
         save(comment);
     }
 }
