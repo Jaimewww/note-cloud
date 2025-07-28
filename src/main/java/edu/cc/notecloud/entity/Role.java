@@ -1,6 +1,5 @@
 package edu.cc.notecloud.entity;
 
-import edu.cc.notecloud.security.Permission;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -8,8 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import java.util.List;
 
 @Entity
 @Table(name="roles")

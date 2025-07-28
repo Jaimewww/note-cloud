@@ -3,7 +3,6 @@ package edu.cc.notecloud.view;
 import edu.cc.notecloud.business.SecurityFacade;
 import edu.cc.notecloud.dto.UserDTO;
 import edu.cc.notecloud.entity.User;
-import edu.cc.notecloud.security.Permission;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;

@@ -1,7 +1,6 @@
 package edu.cc.notecloud.business;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import edu.cc.notecloud.security.Permission;
 import edu.cc.notecloud.entity.Role;
 import edu.cc.notecloud.entity.User;
 import edu.cc.notecloud.security.ActionType;
